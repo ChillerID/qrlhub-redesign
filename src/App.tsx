@@ -39,12 +39,12 @@ export default function QRLHubHomepage() {
               <a href="#ecosystem" className="hover:text-white transition">Ecosystem</a>
 
               <a
-                href="https://theqrl.com"
+                href="https://theqrl.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-4 px-5 py-2 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/40 transition"
               >
-                Official Site → theqrl.com
+                Official Site → theqrl.org
               </a>
             </nav>
           </div>
@@ -153,13 +153,13 @@ export default function QRLHubHomepage() {
                           Official Project
                         </span>
                         <span className="text-sm font-medium text-white">
-                          theqrl.com
+                          theqrl.org
                         </span>
                       </div>
                     </div>
 
                     <a
-                      href="https://theqrl.com"
+                      href="https://theqrl.org"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition"
@@ -318,7 +318,7 @@ export default function QRLHubHomepage() {
       {/* ================= FOOTER ================= */}
       <footer className="border-t border-slate-800 py-16 text-center text-slate-500 text-sm">
         <p>© {new Date().getFullYear()} QRL Hub — Independent Community Resource.</p>
-        <p className="mt-2">Not the official site. Visit theqrl.com for the official project.</p>
+        <p className="mt-2">Not the official site. Visit theqrl.org for the official project.</p>
       </footer>
 
     </div>
