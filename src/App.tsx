@@ -26,6 +26,37 @@ const LANGUAGES = [
   { code: "ja", label: "日本語" },
 ];
 
+// ================= MOBILE MENU =================
+function MobileMenu() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="md:hidden relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="text-slate-300 hover:text-white transition"
+      >
+        ☰
+      </button>
+
+      {open && (
+        <div className="absolute right-0 mt-4 w-56 bg-slate-900 border border-slate-800 rounded-xl shadow-xl z-50 p-4 space-y-3 text-sm">
+          <a href="#research" className="block text-slate-300 hover:text-white">Home</a>
+          <a href="#research" className="block text-slate-300 hover:text-white">QRL Story</a>
+          <a href="#network" className="block text-slate-300 hover:text-white">QRL FAQ</a>
+          <a href="#developers" className="block text-slate-300 hover:text-white">Quantum News</a>
+          <a href="#ecosystem" className="block text-slate-300 hover:text-white">Qubit Tracker</a>
+          <a href="#ecosystem" className="block text-slate-300 hover:text-white">QRL 2.0</a>
+
+          <div className="pt-3 border-t border-slate-800">
+            <LanguageSelector />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ================= LANGUAGE SELECTOR =================
 function LanguageSelector() {
   const [open, setOpen] = React.useState(false);
@@ -83,6 +114,7 @@ export default function QRLHubHomepage() {
               </span>
             </div>
 
+            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
               <a href="#research" className="hover:text-white transition">Home</a>
               <a href="#research" className="hover:text-white transition">QRL Story</a>
@@ -91,17 +123,11 @@ export default function QRLHubHomepage() {
               <a href="#ecosystem" className="hover:text-white transition">Qubit Tracker</a>
               <a href="#ecosystem" className="hover:text-white transition">QRL 2.0</a>
 
-             <LanguageSelector />
-
-              <a
-                href="https://theqrl.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-4 px-5 py-2 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/40 transition"
-              >
-                Official Site → theqrl.org
-              </a>
+              <LanguageSelector />
             </nav>
+
+            {/* Mobile Menu Button */}
+            <MobileMenu />
           </div>
         </Container>
       </header>
@@ -159,7 +185,7 @@ export default function QRLHubHomepage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
-                className="relative rounded-[32px] border border-slate-800 bg-slate-900/70 backdrop-blur-xl shadow-2xl shadow-blue-900/30 overflow-hidden"
+                className="relative rounded-[32px] border border-slate-800 bg-slate-900/70 backdrop-blur-xl shadow-2xl shadow-blue-900/30"
               >
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-blue-400 text-sm">
@@ -196,7 +222,7 @@ export default function QRLHubHomepage() {
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between">
+                  <div className="mt-6 pt-4 border-t border-slate-800 flex flex-col items-start gap-6">
                     <div className="flex items-center gap-3">
                       <img
                         src="/qrl-logo.png"
@@ -208,13 +234,13 @@ export default function QRLHubHomepage() {
                           Official Project
                         </span>
                         <span className="text-sm font-medium text-white">
-                          theqrl.org
+                          theqrl.com
                         </span>
                       </div>
                     </div>
 
                     <a
-                      href="https://theqrl.org"
+                      href="https://theqrl.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition"
@@ -373,7 +399,7 @@ export default function QRLHubHomepage() {
       {/* ================= FOOTER ================= */}
       <footer className="border-t border-slate-800 py-16 text-center text-slate-500 text-sm">
         <p>© {new Date().getFullYear()} QRL Hub — Independent Community Resource.</p>
-        <p className="mt-2">Not the official site. Visit theqrl.org for the official project.</p>
+        <p className="mt-2">Not the official site. Visit theqrl.com for the official project.</p>
       </footer>
 
     </div>
