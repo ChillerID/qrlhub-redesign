@@ -84,6 +84,7 @@ export default function QRLHubHomepage() {
             </div>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+              <a href="#research" className="hover:text-white transition">Home</a>
               <a href="#research" className="hover:text-white transition">Research</a>
               <a href="#network" className="hover:text-white transition">Network</a>
               <a href="#developers" className="hover:text-white transition">Developers</a>
