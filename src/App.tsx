@@ -60,11 +60,13 @@ function MobileMenu({
   setTheme,
   lang,
   setLang,
+  dir,
 }: {
   theme: Theme;
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
   lang: string;
   setLang: React.Dispatch<React.SetStateAction<string>>;
+  dir: "ltr" | "rtl";
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -78,7 +80,12 @@ function MobileMenu({
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-4 w-64 bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] rounded-xl shadow-xl z-50 p-4 space-y-3 text-sm">
+        <div
+        className={cx(
+          "absolute mt-4 w-64 bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] rounded-xl shadow-xl z-50 p-4 space-y-3 text-sm",
+          dir === "rtl" ? "left-0" : "right-0"
+        )}
+      >
           <a href="#research" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">Home</a>
           <a href="#about" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">About</a>
           <a href="#research" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">QRL Story</a>
@@ -259,7 +266,7 @@ export default function QRLHubHomepage() {
             </nav>
 
             {/* Mobile Menu Button */}
-            <MobileMenu theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} />
+            <MobileMenu theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} dir={dir} />
           </div>
         </Container>
       </header>
@@ -706,7 +713,4 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
-
-
-
 
