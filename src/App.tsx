@@ -420,98 +420,40 @@ export default function QRLHubHomepage() {
       <footer className="border-t border-slate-800 bg-slate-950">
         <Container>
           <div className="py-14">
+
             {/* Official social row */}
-            <div className="mt-10">
-              <div className="text-xs text-slate-400 mb-4 md:text-center">
-                <span className="uppercase tracking-wider">QRL official websites:</span>
-              </div>
-
-              <div className="flex items-center gap-6">
-                {/* Left spacer to keep icons centered when button exists */}
-                <div className="hidden md:block w-[220px]" />
-
-                {/* Center icons */}
-                <div className="flex-1 flex items-center justify-center gap-6 text-slate-500">
-                  <a
-                    href="https://discord.gg/theqrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Discord"
-                    className="hover:text-white transition"
-                  >
-                    <DiscordIcon className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://x.com/theqrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="X"
-                    className="hover:text-white transition"
-                  >
-                    <XIcon className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://www.reddit.com/r/QRL/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Reddit"
-                    className="hover:text-white transition"
-                  >
-                    <RedditIcon className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://www.facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    className="hover:text-white transition"
-                  >
-                    <FacebookIcon className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://www.youtube.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="YouTube"
-                    className="hover:text-white transition"
-                  >
-                    <YouTubeIcon className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://t.me"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Telegram"
-                    className="hover:text-white transition"
-                  >
-                    <TelegramIcon className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://github.com/theQRL"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub"
-                    className="hover:text-white transition"
-                  >
-                    <GitHubIcon className="w-6 h-6" />
-                  </a>
-                </div>
-
-                {/* Right: official project button */}
-                <div className="w-[220px] flex justify-end">
-                  <a
-                    href="https://theqrl.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition"
-                  >
-                    Official Site → theqrl.org
-                  </a>
-                </div>
-              </div>
+            <div className="text-xs text-slate-400 mb-4 text-center uppercase tracking-wider">
+              QRL official websites:
             </div>
 
-            {/* Bottom bar: legal left, copyright+disclaimer right */}
+            <div className="flex items-center justify-center gap-8 flex-wrap">
+              <a href="https://discord.gg/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+                <DiscordIcon className="w-6 h-6" />
+              </a>
+              <a href="https://x.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+                <XIcon className="w-6 h-6" />
+              </a>
+              <a href="https://www.reddit.com/r/QRL/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+                <RedditIcon className="w-6 h-6" />
+              </a>
+              <a href="https://www.facebook.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+                <FacebookIcon className="w-6 h-6" />
+              </a>
+              <a href="https://www.youtube.com/@theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+                <YouTubeIcon className="w-6 h-6" />
+              </a>
+              <a href="https://t.me/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+                <TelegramIcon className="w-6 h-6" />
+              </a>
+              <a href="https://github.com/theQRL" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+                <GitHubIcon className="w-6 h-6" />
+              </a>
+              <a href="https://theqrl.org" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform" aria-label="Official Website">
+                <Globe className="w-6 h-6" />
+              </a>
+            </div>
+
+            {/* Bottom bar */}
             <div className="mt-10 pt-6 border-t border-slate-800 text-slate-500 text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="flex items-center gap-6">
                 <a href="#privacy" className="hover:text-white transition">Privacy Policy</a>
@@ -522,6 +464,7 @@ export default function QRLHubHomepage() {
                 © {new Date().getFullYear()} QRL Hub. All rights reserved. Not affiliated with the QRL Foundation. Educational content only.
               </div>
             </div>
+
           </div>
         </Container>
       </footer>
