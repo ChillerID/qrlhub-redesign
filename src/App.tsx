@@ -1,4 +1,5 @@
 import React from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { motion } from "framer-motion";
 import {
   Shield,
@@ -468,6 +469,8 @@ export default function QRLHubHomepage() {
           </div>
         </Container>
       </footer>
+
+      <Analytics />
     </div>
   );
 }
@@ -542,5 +545,4 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
-
 
