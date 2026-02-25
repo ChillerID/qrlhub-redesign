@@ -17,50 +17,76 @@ function Container({ children }: { children: React.ReactNode }) {
   return <div className="max-w-7xl mx-auto px-6">{children}</div>;
 }
 
-// ================= LANGUAGE CONFIG =================
+// ================= LANGUAGE + THEME CONFIG =================
 const LANGUAGES = [
-  { code: "en", label: "English" },
-  { code: "de", label: "Deutsch" },
-  { code: "fi", label: "Suomi" },
-  { code: "fr", label: "Français" },
-  { code: "es", label: "Español" },
-  { code: "ja", label: "日本語" },
+  { code: "en", label: "English", dir: "ltr" as const },
+  { code: "de", label: "Deutsch", dir: "ltr" as const },
+  { code: "fi", label: "Suomi", dir: "ltr" as const },
+  { code: "fr", label: "Français", dir: "ltr" as const },
+  { code: "es", label: "Español", dir: "ltr" as const },
+  { code: "ja", label: "日本語", dir: "ltr" as const },
+  { code: "ar", label: "العربية", dir: "rtl" as const },
 ];
 
+type Theme = "dark" | "light" | "ar";
+const THEMES: { code: Theme; label: string }[] = [
+  { code: "dark", label: "Dark" },
+  { code: "light", label: "Light" },
+  { code: "ar", label: "Arabic (Green)" },
+];
+
+function cx(...classes: Array<string | false | undefined | null>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+
 // ================= MOBILE MENU =================
-function MobileMenu() {
+function MobileMenu({
+  theme,
+  setTheme,
+  lang,
+  setLang,
+}: {
+  theme: Theme;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
+  lang: string;
+  setLang: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const [open, setOpen] = React.useState(false);
 
   return (
     <div className="md:hidden relative">
       <button
         onClick={() => setOpen(!open)}
-        className="text-slate-300 hover:text-white transition"
+        className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition"
       >
         ☰
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-4 w-56 bg-slate-900 border border-slate-800 rounded-xl shadow-xl z-50 p-4 space-y-3 text-sm">
-          <a href="#research" className="block text-slate-300 hover:text-white">Home</a>
-          <a href="#about" className="block text-slate-300 hover:text-white">About</a>
-          <a href="#research" className="block text-slate-300 hover:text-white">QRL Story</a>
-          <a href="#network" className="block text-slate-300 hover:text-white">QRL FAQ</a>
-          <a href="#developers" className="block text-slate-300 hover:text-white">Quantum News</a>
-          <a href="#ecosystem" className="block text-slate-300 hover:text-white">Qubit Tracker</a>
-          <a href="#ecosystem" className="block text-slate-300 hover:text-white">QRL 2.0</a>
+        <div className="absolute right-0 mt-4 w-64 bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] rounded-xl shadow-xl z-50 p-4 space-y-3 text-sm">
+          <a href="#research" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">Home</a>
+          <a href="#about" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">About</a>
+          <a href="#research" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">QRL Story</a>
+          <a href="#network" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">QRL FAQ</a>
+          <a href="#developers" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">Quantum News</a>
+          <a href="#ecosystem" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">Qubit Tracker</a>
+          <a href="#ecosystem" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">QRL 2.0</a>
 
-          <div className="pt-3 border-t border-slate-800 space-y-3">
-            <LanguageSelector />
+          <div className="pt-3 border-t border-[color:var(--border)] space-y-3">
+            <div className="flex items-center justify-between">
+              <ThemeSelector theme={theme} onChange={setTheme} />
+              <LanguageSelector selected={lang} onChange={setLang} />
+            </div>
 
             <a
-                href="https://theqrl.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition text-center"
-              >
-                Official Site → theqrl.org
-              </a>
+              href="https://theqrl.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition text-center"
+            >
+              Official Site → theqrl.org
+            </a>
           </div>
         </div>
       )}
@@ -69,36 +95,41 @@ function MobileMenu() {
 }
 
 // ================= LANGUAGE SELECTOR =================
-function LanguageSelector() {
+function LanguageSelector({
+  selected,
+  onChange,
+}: {
+  selected: string;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState("en");
-
   const current = LANGUAGES.find((l) => l.code === selected);
 
   return (
     <div className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 hover:text-white transition"
+        className="flex items-center gap-2 hover:text-[color:var(--fg)] transition"
       >
         <Globe className="w-4 h-4" />
         {current?.label} ▾
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-3 w-44 rounded-xl bg-slate-900 border border-slate-800 shadow-xl z-50">
+        <div className="absolute right-0 mt-3 w-48 rounded-xl bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] shadow-xl z-50 overflow-hidden">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               onClick={() => {
-                setSelected(lang.code);
+                onChange(lang.code);
                 setOpen(false);
               }}
-              className={`block w-full text-left px-4 py-2 text-sm transition ${
+              className={cx(
+                "block w-full text-left px-4 py-2 text-sm transition",
                 selected === lang.code
-                  ? "bg-slate-800 text-white"
-                  : "text-slate-300 hover:bg-slate-800 hover:text-white"
-              }`}
+                  ? "bg-[color:var(--surfaceHover)] text-[color:var(--fg)]"
+                  : "text-[color:var(--muted)] hover:bg-[color:var(--surfaceHover)] hover:text-[color:var(--fg)]"
+              )}
             >
               {lang.label}
             </button>
@@ -109,46 +140,112 @@ function LanguageSelector() {
   );
 }
 
-export default function QRLHubHomepage() {
+function ThemeSelector({
+  theme,
+  onChange,
+}: {
+  theme: Theme;
+  onChange: React.Dispatch<React.SetStateAction<Theme>>;
+}) {
+  const [open, setOpen] = React.useState(false);
+  const current = THEMES.find((t) => t.code === theme);
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-blue-600/40">
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 hover:text-[color:var(--fg)] transition"
+        aria-label="Theme"
+      >
+        <span className="text-xs px-2 py-1 rounded-lg border border-[color:var(--border)] bg-[color:var(--surfaceSolid)] text-[color:var(--muted)]">
+          {current?.label}
+        </span>
+        ▾
+      </button>
+
+      {open && (
+        <div className="absolute right-0 mt-3 w-44 rounded-xl bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] shadow-xl z-50 overflow-hidden">
+          {THEMES.map((t) => (
+            <button
+              key={t.code}
+              onClick={() => {
+                onChange(t.code);
+                setOpen(false);
+              }}
+              className={cx(
+                "block w-full text-left px-4 py-2 text-sm transition",
+                theme === t.code
+                  ? "bg-[color:var(--surfaceHover)] text-[color:var(--fg)]"
+                  : "text-[color:var(--muted)] hover:bg-[color:var(--surfaceHover)] hover:text-[color:var(--fg)]"
+              )}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function QRLHubHomepage() {
+  const [lang, setLang] = React.useState("en");
+  const [theme, setTheme] = React.useState<Theme>("dark");
+
+  // If Arabic is selected, switch to RTL + green theme automatically (you can remove this if you prefer separate controls).
+  React.useEffect(() => {
+    if (lang === "ar") setTheme("ar");
+  }, [lang]);
+
+  const dir = (LANGUAGES.find((l) => l.code === lang)?.dir ?? "ltr") as "ltr" | "rtl";
+
+  return (
+    <div
+      dir={dir}
+      data-theme={theme}
+      className={cx(
+        "min-h-screen selection:bg-[color:var(--primary)]/40",
+        "bg-[color:var(--bg)] text-[color:var(--fg)]"
+      )}
+    >
       {/* ================= HEADER ================= */}
-      <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[color:var(--border)] bg-[color:var(--bgHeader)] backdrop-blur-xl">
         <Container>
           <div className="py-4 flex items-center justify-between">
             <div className="flex flex-col leading-tight">
-              <span className="text-lg font-semibold tracking-tight text-white">
+              <span className="text-lg font-semibold tracking-tight text-[color:var(--fg)]">
                 QRL Hub
               </span>
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-[color:var(--muted)]">
                 Independent Community Site
               </span>
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-              <a href="#research" className="hover:text-white transition">Home</a>
-              <a href="#about" className="hover:text-white transition">About</a>
-              <a href="#research" className="hover:text-white transition">QRL Story</a>
-              <a href="#network" className="hover:text-white transition">QRL FAQ</a>
-              <a href="#developers" className="hover:text-white transition">Quantum News</a>
-              <a href="#ecosystem" className="hover:text-white transition">Qubit Tracker</a>
-              <a href="#ecosystem" className="hover:text-white transition">QRL 2.0</a>
+            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[color:var(--muted)]">
+              <a href="#research" className="hover:text-[color:var(--fg)] transition">Home</a>
+              <a href="#about" className="hover:text-[color:var(--fg)] transition">About</a>
+              <a href="#research" className="hover:text-[color:var(--fg)] transition">QRL Story</a>
+              <a href="#network" className="hover:text-[color:var(--fg)] transition">QRL FAQ</a>
+              <a href="#developers" className="hover:text-[color:var(--fg)] transition">Quantum News</a>
+              <a href="#ecosystem" className="hover:text-[color:var(--fg)] transition">Qubit Tracker</a>
+              <a href="#ecosystem" className="hover:text-[color:var(--fg)] transition">QRL 2.0</a>
 
-              <LanguageSelector />
+              <ThemeSelector theme={theme} onChange={setTheme} />
+              <LanguageSelector selected={lang} onChange={setLang} />
 
               <a
                 href="https://theqrl.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition"
+                className="ml-2 px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition"
               >
                 Official Site → theqrl.org
               </a>
             </nav>
 
             {/* Mobile Menu Button */}
-            <MobileMenu />
+            <MobileMenu theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} />
           </div>
         </Container>
       </header>
@@ -175,7 +272,7 @@ export default function QRLHubHomepage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6 }}
-                className="mt-6 text-lg text-slate-300 max-w-2xl"
+                className="mt-6 text-lg text-[color:var(--muted)] max-w-2xl"
               >
                 Your source for quantum computing threats, blockchain security,
                 and the quantum‑resistant future of cryptocurrency — centered on
@@ -183,17 +280,27 @@ export default function QRLHubHomepage() {
               </motion.p>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <button className="rounded-2xl bg-blue-600 hover:bg-blue-500 px-6 py-3 text-white shadow-lg shadow-blue-600/40 hover:shadow-blue-500/70 transition flex items-center gap-2">
+                <button
+                  className={cx(
+                    "rounded-2xl px-6 py-3 shadow-md transition flex items-center gap-2",
+                    "bg-blue-400 hover:bg-blue-500 text-white shadow-md hover:shadow-blue-400/40"
+                  )}
+                >
                   Explore Quantum News <ArrowRight className="w-4 h-4" />
                 </button>
 
-                <button className="rounded-2xl bg-amber-400 hover:bg-amber-300 px-6 py-3 text-slate-900 font-semibold shadow-xl shadow-amber-400/50 hover:shadow-amber-300/80 transition flex items-center gap-2">
+                <button
+                  className={cx(
+                    "rounded-2xl px-6 py-3 font-semibold transition flex items-center gap-2",
+                    "bg-amber-400 hover:bg-amber-500 text-slate-900 shadow-md hover:shadow-amber-400/40"
+                  )}
+                >
                   Explore QRL 2.0 <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="mt-6 flex items-center gap-3 text-sm text-slate-400">
-                <span className="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300">
+              <div className="mt-6 flex items-center gap-3 text-sm text-[color:var(--muted)]">
+                <span className="px-3 py-1 rounded-full bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--muted)]">
                   Updated Feb 16, 2026
                 </span>
                 <span>Educational content • Community maintained</span>
@@ -206,19 +313,29 @@ export default function QRLHubHomepage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
-                className="relative rounded-[32px] border border-slate-800 bg-slate-900/70 backdrop-blur-xl shadow-2xl shadow-blue-900/30"
+                className={cx(
+                "relative rounded-[32px] backdrop-blur-xl",
+                theme === "light"
+                  ? "bg-white shadow-2xl shadow-black/5 border border-transparent"
+                  : "border border-[color:var(--border)] bg-[color:var(--surface)] shadow-xl shadow-[color:var(--primaryShadow)]/30"
+              )}
               >
                 <div className="p-6">
-                  <div className="flex items-center gap-2 text-blue-400 text-sm">
+                  <div className={cx(
+                    "flex items-center gap-2 text-sm px-3 py-1 rounded-full",
+                    theme === "light"
+                      ? "bg-blue-50 text-blue-700"
+                      : "text-[color:var(--primary)]"
+                  )}>
                     <Sparkles className="w-4 h-4" />
                     Post‑Quantum Security
                   </div>
 
-                  <h3 className="mt-3 text-xl font-semibold text-white">
+                  <h3 className="mt-3 text-xl font-semibold text-[color:var(--fg)]">
                     Quantum-Safe Cryptocurrency: $QRL
                   </h3>
 
-                  <p className="mt-3 text-sm text-slate-400">
+                  <p className="mt-3 text-sm text-[color:var(--muted)]">
                     QRL launched in 2018 with XMSS hash‑based signatures — built
                     for long‑term cryptographic resilience.
                   </p>
@@ -231,19 +348,19 @@ export default function QRLHubHomepage() {
                     ].map((item) => (
                       <div
                         key={item.label}
-                        className="rounded-2xl bg-slate-800 border border-slate-700 p-3"
+                        className="rounded-2xl bg-[color:var(--surfaceHover)] border border-[color:var(--border)] p-3"
                       >
                         <p className="text-xs text-slate-500">
                           {item.label}
                         </p>
-                        <p className="font-semibold text-white">
+                        <p className="font-semibold text-[color:var(--fg)]">
                           {item.value}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="mt-6 pt-4 border-t border-[color:var(--border)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <img
                         src="/qrl-logo.png"
@@ -251,10 +368,10 @@ export default function QRLHubHomepage() {
                         className="w-36 h-36 object-contain"
                       />
                       <div className="flex flex-col">
-                        <span className="text-xs text-slate-400">
+                        <span className="text-xs text-[color:var(--muted)]">
                           Official Project
                         </span>
-                        <span className="text-sm font-medium text-white">
+                        <span className="text-sm font-medium text-[color:var(--fg)]">
                           theqrl.org
                         </span>
                       </div>
@@ -264,7 +381,7 @@ export default function QRLHubHomepage() {
                       href="https://theqrl.org"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition w-full sm:w-auto text-center"
+                      className="px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-[color:var(--fg)] text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition w-full sm:w-auto text-center"
                     >
                       Visit Official Site
                     </a>
@@ -277,9 +394,9 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= RESEARCH ================= */}
-      <section id="research" className="py-20 border-t border-slate-800">
+      <section id="research" className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-white mb-12">Why Post‑Quantum Matters Now</h2>
+          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Why Post‑Quantum Matters Now</h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { title: "Hardware Progress", icon: Cpu },
@@ -289,13 +406,18 @@ export default function QRLHubHomepage() {
             ].map(({ title, icon: Icon }) => (
               <div
                 key={title}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/40 transition"
+                className={cx(
+                "rounded-2xl p-6 transition",
+                theme === "light"
+                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
+              )}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <Icon className="w-7 h-7 text-blue-400 drop-shadow-[0_6px_18px_rgba(59,130,246,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-white">{title}</h3>
+                  <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(59,130,246,0.6)]" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
                 </div>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[color:var(--muted)]">
                   Understanding quantum impact and long‑term blockchain security implications.
                 </p>
               </div>
@@ -305,9 +427,9 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= QRL APPROACH ================= */}
-      <section className="py-20 border-t border-slate-800">
+      <section className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-white mb-12">The QRL Approach</h2>
+          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">The QRL Approach</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Mainnet Since 2018", icon: Shield },
@@ -316,13 +438,18 @@ export default function QRLHubHomepage() {
             ].map(({ title, icon: Icon }) => (
               <div
                 key={title}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 hover:border-emerald-400/40 transition"
+                className={cx(
+                "rounded-2xl p-8 transition",
+                theme === "light"
+                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
+              )}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <Icon className="w-7 h-7 text-emerald-400 drop-shadow-[0_6px_18px_rgba(16,185,129,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-white">{title}</h3>
+                  <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(16,185,129,0.6)]" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
                 </div>
-                <p className="text-sm text-slate-400">Post‑quantum security designed from day one.</p>
+                <p className="text-sm text-[color:var(--muted)]">Post‑quantum security designed from day one.</p>
               </div>
             ))}
           </div>
@@ -330,9 +457,9 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= NEWS ================= */}
-      <section className="py-20 border-t border-slate-800">
+      <section className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-white mb-12">Quantum News & Analysis</h2>
+          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Quantum News & Analysis</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Hardware Threshold Update", icon: Activity },
@@ -341,13 +468,18 @@ export default function QRLHubHomepage() {
             ].map(({ title, icon: Icon }) => (
               <div
                 key={title}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 hover:border-indigo-400/40 transition"
+                className={cx(
+                "rounded-2xl p-8 transition",
+                theme === "light"
+                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
+              )}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <Icon className="w-7 h-7 text-indigo-400 drop-shadow-[0_6px_18px_rgba(99,102,241,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-white">{title}</h3>
+                  <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(99,102,241,0.6)]" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
                 </div>
-                <p className="text-sm text-slate-400">Latest research and ecosystem developments.</p>
+                <p className="text-sm text-[color:var(--muted)]">Latest research and ecosystem developments.</p>
               </div>
             ))}
           </div>
@@ -355,13 +487,18 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= FAQ ================= */}
-      <section className="py-20 border-t border-slate-800">
+      <section className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-white mb-12">The Questions Crypto Avoids</h2>
+          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">The Questions Crypto Avoids</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {["What is the migration plan?","How long do upgrades take?","Can legacy chains pivot safely?","Why is crypto structurally exposed?"].map((item)=> (
-              <div key={item} className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-                <p className="text-slate-300">{item}</p>
+              <div key={item} className={cx(
+                "rounded-2xl p-6",
+                theme === "light"
+                  ? "bg-white shadow-md shadow-black/5 border border-transparent"
+                  : "bg-[color:var(--surface)] border border-[color:var(--border)]"
+              )}>
+                <p className="text-[color:var(--muted)]">{item}</p>
               </div>
             ))}
           </div>
@@ -369,9 +506,9 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= NETWORK ================= */}
-      <section id="network" className="py-20 border-t border-slate-800">
+      <section id="network" className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-white mb-12">Network Snapshot</h2>
+          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Network Snapshot</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "XMSS Security Model", icon: Shield },
@@ -380,11 +517,16 @@ export default function QRLHubHomepage() {
             ].map(({ title, icon: Icon }) => (
               <div
                 key={title}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 hover:border-amber-400/40 transition"
+                className={cx(
+                "rounded-2xl p-8 transition",
+                theme === "light"
+                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
+              )}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <Icon className="w-7 h-7 text-amber-400 drop-shadow-[0_6px_18px_rgba(251,191,36,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-white">{title}</h3>
+                  <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(251,191,36,0.6)]" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
                 </div>
               </div>
             ))}
@@ -393,9 +535,9 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= DEVELOPERS ================= */}
-      <section id="developers" className="py-20 border-t border-slate-800">
+      <section id="developers" className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-white mb-12">Developers & Community</h2>
+          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Developers & Community</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Documentation", icon: BookOpen },
@@ -404,13 +546,18 @@ export default function QRLHubHomepage() {
             ].map(({ title, icon: Icon }) => (
               <div
                 key={title}
-                className="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 hover:border-blue-400/40 transition"
+                className={cx(
+                "rounded-2xl p-8 transition",
+                theme === "light"
+                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
+              )}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <Icon className="w-7 h-7 text-blue-400 drop-shadow-[0_6px_18px_rgba(59,130,246,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-white">{title}</h3>
+                  <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(59,130,246,0.6)]" strokeWidth={1.5} />
+                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
                 </div>
-                <p className="text-sm text-slate-400">Explore resources and join the ecosystem.</p>
+                <p className="text-sm text-[color:var(--muted)]">Explore resources and join the ecosystem.</p>
               </div>
             ))}
           </div>
@@ -418,47 +565,47 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="border-t border-slate-800 bg-slate-950">
+      <footer className="border-t border-[color:var(--border)] bg-[color:var(--bg)]">
         <Container>
           <div className="py-14">
 
             {/* Official social row */}
-            <div className="text-xs text-slate-400 mb-4 text-center uppercase tracking-wider">
+            <div className="text-xs text-[color:var(--muted)] mb-4 text-center uppercase tracking-wider">
               QRL official websites:
             </div>
 
             <div className="flex items-center justify-center gap-8 flex-wrap">
-              <a href="https://discord.gg/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://discord.gg/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <DiscordIcon className="w-6 h-6" />
               </a>
-              <a href="https://x.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://x.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <XIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.reddit.com/r/QRL/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.reddit.com/r/QRL/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <RedditIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.facebook.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.facebook.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <FacebookIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.youtube.com/@theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.youtube.com/@theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <YouTubeIcon className="w-6 h-6" />
               </a>
-              <a href="https://t.me/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://t.me/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <TelegramIcon className="w-6 h-6" />
               </a>
-              <a href="https://github.com/theQRL" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://github.com/theQRL" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <GitHubIcon className="w-6 h-6" />
               </a>
-              <a href="https://theqrl.org" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform" aria-label="Official Website">
+              <a href="https://theqrl.org" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform" aria-label="Official Website">
                 <Globe className="w-6 h-6" />
               </a>
             </div>
 
             {/* Bottom bar */}
-            <div className="mt-10 pt-6 border-t border-slate-800 text-slate-500 text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="mt-10 pt-6 border-t border-[color:var(--border)] text-slate-500 text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="flex items-center gap-6">
-                <a href="#privacy" className="hover:text-white transition">Privacy Policy</a>
-                <a href="#terms" className="hover:text-white transition">Terms of Use</a>
+                <a href="#privacy" className="hover:text-[color:var(--fg)] transition">Privacy Policy</a>
+                <a href="#terms" className="hover:text-[color:var(--fg)] transition">Terms of Use</a>
               </div>
 
               <div className="sm:text-right">
@@ -545,4 +692,6 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
+
+
 

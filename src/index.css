@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg: #0b1120;
+  --bgHeader: rgba(11, 17, 32, 0.8);
+  --surface: #111827;
+  --surfaceSolid: #111827;
+  --surfaceHover: #1f2937;
+  --border: #1f2937;
+  --fg: #f9fafb;
+  --muted: #9ca3af;
+
+  --primary: #2563eb;          /* QRL blue */
+  --primaryHover: #1d4ed8;
+  --primaryShadow: rgba(37, 99, 235, 0.5);
+}
+
+/* Light mode */
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --bgHeader: rgba(255, 255, 255, 0.8);
+  --surface: #ffffff;
+  --surfaceSolid: #ffffff;
+  --surfaceHover: #f1f5f9;
+  --border: #e5e7eb;
+  --fg: #0f172a;
+  --muted: #64748b;
+
+  --primary: #3b82f6;          /* lighter blue */
+  --primaryHover: #2563eb;
+  --primaryShadow: rgba(59, 130, 246, 0.4);
+}
+
+/* Arabic (green theme) */
+[data-theme="ar"] {
+  --bg: #0f1f17;
+  --bgHeader: rgba(15, 31, 23, 0.8);
+  --surface: #12281f;
+  --surfaceSolid: #12281f;
+  --surfaceHover: #1f3a2f;
+  --border: #1f3a2f;
+  --fg: #ecfdf5;
+  --muted: #86efac;
+
+  --primary: #10b981;         /* green */
+  --primaryHover: #059669;
+  --primaryShadow: rgba(16, 185, 129, 0.5);
+}
