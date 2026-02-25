@@ -42,6 +42,7 @@ function MobileMenu() {
       {open && (
         <div className="absolute right-0 mt-4 w-56 bg-slate-900 border border-slate-800 rounded-xl shadow-xl z-50 p-4 space-y-3 text-sm">
           <a href="#research" className="block text-slate-300 hover:text-white">Home</a>
+          <a href="#about" className="block text-slate-300 hover:text-white">About</a>
           <a href="#research" className="block text-slate-300 hover:text-white">QRL Story</a>
           <a href="#network" className="block text-slate-300 hover:text-white">QRL FAQ</a>
           <a href="#developers" className="block text-slate-300 hover:text-white">Quantum News</a>
@@ -126,6 +127,7 @@ export default function QRLHubHomepage() {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
               <a href="#research" className="hover:text-white transition">Home</a>
+              <a href="#about" className="hover:text-white transition">About</a>
               <a href="#research" className="hover:text-white transition">QRL Story</a>
               <a href="#network" className="hover:text-white transition">QRL FAQ</a>
               <a href="#developers" className="hover:text-white transition">Quantum News</a>
@@ -415,11 +417,186 @@ export default function QRLHubHomepage() {
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="border-t border-slate-800 py-16 text-center text-slate-500 text-sm">
-        <p>© {new Date().getFullYear()} QRL Hub — Independent Community Resource.</p>
-        <p className="mt-2">Not the official site. Visit theqrl.org for the official project.</p>
-      </footer>
+      <footer className="border-t border-slate-800 bg-slate-950">
+        <Container>
+          <div className="py-14">
+            {/* Official social row */}
+            <div className="mt-10">
+              <div className="text-xs text-slate-400 mb-4 md:text-center">
+                <span className="uppercase tracking-wider">QRL official websites:</span>
+              </div>
 
+              <div className="flex items-center gap-6">
+                {/* Left spacer to keep icons centered when button exists */}
+                <div className="hidden md:block w-[220px]" />
+
+                {/* Center icons */}
+                <div className="flex-1 flex items-center justify-center gap-6 text-slate-500">
+                  <a
+                    href="https://discord.gg/theqrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Discord"
+                    className="hover:text-white transition"
+                  >
+                    <DiscordIcon className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://x.com/theqrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X"
+                    className="hover:text-white transition"
+                  >
+                    <XIcon className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://www.reddit.com/r/QRL/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Reddit"
+                    className="hover:text-white transition"
+                  >
+                    <RedditIcon className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="hover:text-white transition"
+                  >
+                    <FacebookIcon className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://www.youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube"
+                    className="hover:text-white transition"
+                  >
+                    <YouTubeIcon className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://t.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Telegram"
+                    className="hover:text-white transition"
+                  >
+                    <TelegramIcon className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://github.com/theQRL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="hover:text-white transition"
+                  >
+                    <GitHubIcon className="w-6 h-6" />
+                  </a>
+                </div>
+
+                {/* Right: official project button */}
+                <div className="w-[220px] flex justify-end">
+                  <a
+                    href="https://theqrl.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition"
+                  >
+                    Official Site → theqrl.org
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom bar: legal left, copyright+disclaimer right */}
+            <div className="mt-10 pt-6 border-t border-slate-800 text-slate-500 text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-center gap-6">
+                <a href="#privacy" className="hover:text-white transition">Privacy Policy</a>
+                <a href="#terms" className="hover:text-white transition">Terms of Use</a>
+              </div>
+
+              <div className="sm:text-right">
+                © {new Date().getFullYear()} QRL Hub. All rights reserved. Not affiliated with the QRL Foundation. Educational content only.
+              </div>
+            </div>
+          </div>
+        </Container>
+      </footer>
     </div>
   );
 }
+
+// ================= FOOTER ICONS (Official-style SVGs) =================
+function IconBase({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="currentColor"
+      role="img"
+      aria-hidden="true"
+    >
+      {children}
+    </svg>
+  );
+}
+
+function GitHubIcon({ className }: { className?: string }) {
+  return (
+    <IconBase className={className}>
+      <path d="M12 .5C5.73.5.75 5.7.75 12.14c0 5.13 3.31 9.48 7.9 11.02.58.11.8-.26.8-.58 0-.29-.02-1.26-.02-2.28-2.9.55-3.65-.72-3.88-1.38-.13-.34-.67-1.38-1.15-1.66-.38-.21-.92-.72-.02-.74.85-.02 1.46.8 1.66 1.13.97 1.66 2.52 1.19 3.13.9.1-.72.38-1.19.69-1.46-2.57-.29-5.25-1.32-5.25-5.84 0-1.29.45-2.35 1.18-3.17-.12-.3-.52-1.52.11-3.17 0 0 .97-.32 3.18 1.21.92-.26 1.9-.38 2.88-.38.98 0 1.96.13 2.88.38 2.21-1.55 3.18-1.21 3.18-1.21.63 1.65.23 2.87.11 3.17.74.82 1.18 1.88 1.18 3.17 0 4.53-2.7 5.55-5.27 5.84.39.34.74 1.01.74 2.06 0 1.48-.02 2.67-.02 3.04 0 .32.21.7.8.58 4.59-1.54 7.9-5.89 7.9-11.02C23.25 5.7 18.27.5 12 .5z" />
+    </IconBase>
+  );
+}
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <IconBase className={className}>
+      <path d="M18.9 2H22l-6.8 7.77L23 22h-6.9l-5.4-7.02L4.6 22H1.5l7.3-8.35L1 2h7.1l4.9 6.36L18.9 2zm-1.2 18h1.7L7.2 3.9H5.4L17.7 20z" />
+    </IconBase>
+  );
+}
+
+function RedditIcon({ className }: { className?: string }) {
+  return (
+    <IconBase className={className}>
+      <path d="M24 12c0-1.66-1.34-3-3-3-.73 0-1.4.26-1.92.7-1.64-1.1-3.8-1.8-6.17-1.9l1.04-4.88 3.4.73a2 2 0 1 0 .2-1.13l-4.02-.86a.8.8 0 0 0-.95.62l-1.24 5.82c-2.45.06-4.69.76-6.38 1.9A2.96 2.96 0 0 0 3 9c-1.66 0-3 1.34-3 3 0 1.2.7 2.24 1.71 2.73-.06.28-.09.57-.09.87 0 3.87 4.93 7 11 7s11-3.13 11-7c0-.3-.03-.6-.09-.87A2.99 2.99 0 0 0 24 12zM8.5 14.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm8.2 5.55c-1.05 1.05-2.8 1.1-3.7 1.1-.9 0-2.65-.05-3.7-1.1a.75.75 0 1 1 1.06-1.06c.53.53 1.7.66 2.64.66.94 0 2.11-.13 2.64-.66a.75.75 0 0 1 1.06 1.06zM15.5 14.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+    </IconBase>
+  );
+}
+
+function DiscordIcon({ className }: { className?: string }) {
+  return (
+    <IconBase className={className}>
+      <path d="M20.3 4.5a16.6 16.6 0 0 0-4.1-1.3l-.2.4a15.2 15.2 0 0 1 3.5 1.7 12.2 12.2 0 0 0-4.7-1.5 12.8 12.8 0 0 0-1.7-.1c-.6 0-1.2 0-1.8.1a12.2 12.2 0 0 0-4.7 1.5 15.2 15.2 0 0 1 3.5-1.7l-.2-.4c-1.4.2-2.8.6-4.1 1.3C2.7 8.1 2 11.6 2 15.1c0 0 1.2 2.1 4.3 2.2.5-.7 1-1.4 1.4-2.1-.8-.2-1.6-.6-2.3-1 .2-.2.3-.3.5-.5 1.3.6 2.7.9 4.1 1.1 1.3.1 2.7.1 4 0 1.4-.2 2.8-.5 4.1-1.1l.5.5c-.7.4-1.5.8-2.3 1 .4.7.9 1.4 1.4 2.1 3.1-.1 4.3-2.2 4.3-2.2 0-3.5-.7-7-2.7-10.6zM8.7 14.2c-.8 0-1.5-.7-1.5-1.6s.7-1.6 1.5-1.6c.8 0 1.5.7 1.5 1.6s-.7 1.6-1.5 1.6zm6.6 0c-.8 0-1.5-.7-1.5-1.6s.7-1.6 1.5-1.6c.8 0 1.5.7 1.5 1.6s-.7 1.6-1.5 1.6z" />
+    </IconBase>
+  );
+}
+
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <IconBase className={className}>
+      <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6h1.6V5c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7v3h2.6v8h3.9z" />
+    </IconBase>
+  );
+}
+
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <IconBase className={className}>
+      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12s0 3.8.5 5.8a3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-2 .5-5.8.5-5.8s0-3.8-.5-5.8zM9.6 15.5V8.5L15.8 12l-6.2 3.5z" />
+    </IconBase>
+  );
+}
+
+function TelegramIcon({ className }: { className?: string }) {
+  return (
+    <IconBase className={className}>
+      <path d="M9.7 15.3 9.5 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.9c.7.4 1.2.2 1.4-.6l2.6-12.2c.3-1.1-.4-1.6-1.2-1.3L3.4 11.5c-1 .4-1 1.1-.2 1.4l4 1.2 9.3-5.9c.4-.3.8-.1.5.2l-7.3 7z" />
+    </IconBase>
+  );
+}
+
