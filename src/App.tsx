@@ -70,6 +70,16 @@ function MobileMenu({
 }) {
   const [open, setOpen] = React.useState(false);
 
+  // Prevent background scroll when the mobile menu is open
+  React.useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   return (
     <div className="md:hidden relative">
       <button
@@ -80,36 +90,88 @@ function MobileMenu({
       </button>
 
       {open && (
-        <div
-        className={cx(
-          "absolute mt-4 w-64 bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] rounded-xl shadow-xl z-50 p-4 space-y-3 text-sm",
-          dir === "rtl" ? "left-0" : "right-0"
-        )}
-      >
-          <a href="#research" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">Home</a>
-          <a href="#about" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">About</a>
-          <a href="#research" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">QRL Story</a>
-          <a href="#network" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">QRL FAQ</a>
-          <a href="#developers" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">Quantum News</a>
-          <a href="#ecosystem" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">Qubit Tracker</a>
-          <a href="#ecosystem" className="block text-[color:var(--muted)] hover:text-[color:var(--fg)]">QRL 2.0</a>
+        <>
+          {/* Backdrop */}
+          <button
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
+          />
 
-          <div className="pt-3 border-t border-[color:var(--border)] space-y-3">
-            <div className="flex items-center justify-between">
-              <ThemeSelector theme={theme} onChange={setTheme} />
-              <LanguageSelector selected={lang} onChange={setLang} />
+          {/* Panel */}
+          <div
+            className={cx(
+              "fixed z-50 md:hidden top-16 w-[min(92vw,360px)] rounded-2xl bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] shadow-2xl p-4",
+              "max-h-[calc(100vh-5rem)] overflow-y-auto",
+              dir === "rtl" ? "left-4" : "right-4"
+            )}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-sm font-semibold text-[color:var(--fg)]">Menu</div>
+              <button
+                onClick={() => setOpen(false)}
+                className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition"
+                aria-label="Close"
+              >
+                ✕
+              </button>
             </div>
 
-            <a
-              href="https://theqrl.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition text-center"
-            >
-              Official Site → theqrl.org
-            </a>
+            <div className="space-y-2 text-sm">
+              <a onClick={() => setOpen(false)} href="#research" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">Home</a>
+              <a onClick={() => setOpen(false)} href="#about" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">About</a>
+              <a onClick={() => setOpen(false)} href="#research" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">QRL Story</a>
+              <a onClick={() => setOpen(false)} href="#network" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">QRL FAQ</a>
+              <a onClick={() => setOpen(false)} href="#developers" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">Quantum News</a>
+              <a onClick={() => setOpen(false)} href="#ecosystem" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">Qubit Tracker</a>
+              <a onClick={() => setOpen(false)} href="#ecosystem" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">QRL 2.0</a>
+            </div>
+
+            <div className="mt-4 pt-4 border-t border-[color:var(--border)] space-y-3">
+              {/* Mobile-friendly controls: native select (scrollable) */}
+              <label className="block">
+                <div className="text-xs text-[color:var(--muted)] mb-1">Theme</div>
+                <select
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value as Theme)}
+                  className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
+                >
+                  {THEMES.map((t) => (
+                    <option key={t.code} value={t.code}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block">
+                <div className="text-xs text-[color:var(--muted)] mb-1">Language</div>
+                <select
+                  value={lang}
+                  onChange={(e) => {
+                    setLang(e.target.value);
+                  }}
+                  className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
+                >
+                  {LANGUAGES.map((l) => (
+                    <option key={l.code} value={l.code}>
+                      {l.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <a
+                href="https://theqrl.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition text-center"
+              >
+                Official Site → theqrl.org
+              </a>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
