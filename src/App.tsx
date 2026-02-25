@@ -16,6 +16,57 @@ function Container({ children }: { children: React.ReactNode }) {
   return <div className="max-w-7xl mx-auto px-6">{children}</div>;
 }
 
+// ================= LANGUAGE CONFIG =================
+const LANGUAGES = [
+  { code: "en", label: "English" },
+  { code: "de", label: "Deutsch" },
+  { code: "fi", label: "Suomi" },
+  { code: "fr", label: "Français" },
+  { code: "es", label: "Español" },
+  { code: "ja", label: "日本語" },
+];
+
+// ================= LANGUAGE SELECTOR =================
+function LanguageSelector() {
+  const [open, setOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState("en");
+
+  const current = LANGUAGES.find((l) => l.code === selected);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 hover:text-white transition"
+      >
+        <Globe className="w-4 h-4" />
+        {current?.label} ▾
+      </button>
+
+      {open && (
+        <div className="absolute right-0 mt-3 w-44 rounded-xl bg-slate-900 border border-slate-800 shadow-xl z-50">
+          {LANGUAGES.map((lang) => (
+            <button
+              key={lang.code}
+              onClick={() => {
+                setSelected(lang.code);
+                setOpen(false);
+              }}
+              className={`block w-full text-left px-4 py-2 text-sm transition ${
+                selected === lang.code
+                  ? "bg-slate-800 text-white"
+                  : "text-slate-300 hover:bg-slate-800 hover:text-white"
+              }`}
+            >
+              {lang.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function QRLHubHomepage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-blue-600/40">
@@ -37,6 +88,8 @@ export default function QRLHubHomepage() {
               <a href="#network" className="hover:text-white transition">Network</a>
               <a href="#developers" className="hover:text-white transition">Developers</a>
               <a href="#ecosystem" className="hover:text-white transition">Ecosystem</a>
+
+             <LanguageSelector />
 
               <a
                 href="https://theqrl.org"
