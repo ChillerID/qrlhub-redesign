@@ -178,8 +178,8 @@ export default function QRLHubHomepage() {
 
                   <div className="mt-5 grid grid-cols-3 gap-3">
                     {[
-                      { label: "Since", value: "2018" },
-                      { label: "Core", value: "XMSS" },
+                      { label: "Mainnet Since", value: "2018" },
+                      { label: "Core", value: "QRL 1.x" },
                       { label: "Next", value: "QRL 2.0" },
                     ].map((item) => (
                       <div
