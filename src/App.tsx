@@ -222,7 +222,7 @@ export default function QRLHubHomepage() {
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-800 flex flex-col items-start gap-6">
+                  <div className="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <img
                         src="/qrl-logo.png"
@@ -243,7 +243,7 @@ export default function QRLHubHomepage() {
                       href="https://theqrl.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition"
+                      className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition w-full sm:w-auto text-center"
                     >
                       Visit Official Site
                     </a>
