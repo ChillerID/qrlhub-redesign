@@ -85,10 +85,11 @@ export default function QRLHubHomepage() {
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
               <a href="#research" className="hover:text-white transition">Home</a>
-              <a href="#research" className="hover:text-white transition">Research</a>
-              <a href="#network" className="hover:text-white transition">Network</a>
-              <a href="#developers" className="hover:text-white transition">Developers</a>
-              <a href="#ecosystem" className="hover:text-white transition">Ecosystem</a>
+              <a href="#research" className="hover:text-white transition">QRL Story</a>
+              <a href="#network" className="hover:text-white transition">QRL FAQ</a>
+              <a href="#developers" className="hover:text-white transition">Quantum News</a>
+              <a href="#ecosystem" className="hover:text-white transition">Qubit Tracker</a>
+              <a href="#ecosystem" className="hover:text-white transition">QRL 2.0</a>
 
              <LanguageSelector />
 
