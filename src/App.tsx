@@ -48,8 +48,17 @@ function MobileMenu() {
           <a href="#ecosystem" className="block text-slate-300 hover:text-white">Qubit Tracker</a>
           <a href="#ecosystem" className="block text-slate-300 hover:text-white">QRL 2.0</a>
 
-          <div className="pt-3 border-t border-slate-800">
+          <div className="pt-3 border-t border-slate-800 space-y-3">
             <LanguageSelector />
+
+            <a
+                href="https://theqrl.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition text-center"
+              >
+                Official Site → theqrl.org
+              </a>
           </div>
         </div>
       )}
@@ -124,6 +133,15 @@ export default function QRLHubHomepage() {
               <a href="#ecosystem" className="hover:text-white transition">QRL 2.0</a>
 
               <LanguageSelector />
+
+              <a
+                href="https://theqrl.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition"
+              >
+                Official Site → theqrl.org
+              </a>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -234,13 +252,13 @@ export default function QRLHubHomepage() {
                           Official Project
                         </span>
                         <span className="text-sm font-medium text-white">
-                          theqrl.com
+                          theqrl.org
                         </span>
                       </div>
                     </div>
 
                     <a
-                      href="https://theqrl.com"
+                      href="https://theqrl.org"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm shadow-lg shadow-blue-600/40 transition w-full sm:w-auto text-center"
@@ -399,7 +417,7 @@ export default function QRLHubHomepage() {
       {/* ================= FOOTER ================= */}
       <footer className="border-t border-slate-800 py-16 text-center text-slate-500 text-sm">
         <p>© {new Date().getFullYear()} QRL Hub — Independent Community Resource.</p>
-        <p className="mt-2">Not the official site. Visit theqrl.com for the official project.</p>
+        <p className="mt-2">Not the official site. Visit theqrl.org for the official project.</p>
       </footer>
 
     </div>
