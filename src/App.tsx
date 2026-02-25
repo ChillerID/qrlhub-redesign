@@ -20,12 +20,26 @@ function Container({ children }: { children: React.ReactNode }) {
 // ================= LANGUAGE + THEME CONFIG =================
 const LANGUAGES = [
   { code: "en", label: "English", dir: "ltr" as const },
-  { code: "de", label: "Deutsch", dir: "ltr" as const },
-  { code: "fi", label: "Suomi", dir: "ltr" as const },
-  { code: "fr", label: "Français", dir: "ltr" as const },
-  { code: "es", label: "Español", dir: "ltr" as const },
-  { code: "ja", label: "日本語", dir: "ltr" as const },
   { code: "ar", label: "العربية", dir: "rtl" as const },
+  { code: "id", label: "Bahasa Indonesia", dir: "ltr" as const },
+  { code: "ms", label: "Bahasa Melayu", dir: "ltr" as const },
+  { code: "cs", label: "Čeština", dir: "ltr" as const },
+  { code: "de", label: "Deutsch", dir: "ltr" as const },
+  { code: "es", label: "Español", dir: "ltr" as const },
+  { code: "fr", label: "Français", dir: "ltr" as const },
+  { code: "it", label: "Italiano", dir: "ltr" as const },
+  { code: "nl", label: "Nederlands", dir: "ltr" as const },
+  { code: "pl", label: "Polski", dir: "ltr" as const },
+  { code: "pt", label: "Português", dir: "ltr" as const },
+  { code: "ru", label: "Русский", dir: "ltr" as const },
+  { code: "fi", label: "Suomi", dir: "ltr" as const },
+  { code: "th", label: "ไทย", dir: "ltr" as const },
+  { code: "tr", label: "Türkçe", dir: "ltr" as const },
+  { code: "vi", label: "Tiếng Việt", dir: "ltr" as const },
+  { code: "ja", label: "日本語", dir: "ltr" as const },
+  { code: "ko", label: "한국어", dir: "ltr" as const },
+  { code: "zh", label: "中文", dir: "ltr" as const },
+  { code: "zh-TW", label: "繁體中文", dir: "ltr" as const },
 ];
 
 type Theme = "dark" | "light" | "ar";
@@ -692,6 +706,7 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
+
 
 
 
