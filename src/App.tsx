@@ -214,7 +214,7 @@ export default function QRLHubHomepage() {
                   </div>
 
                   <h3 className="mt-3 text-xl font-semibold text-white">
-                    Designed for the quantum era
+                    Quantum-Safe Cryptocurrency: $QRL
                   </h3>
 
                   <p className="mt-3 text-sm text-slate-400">
@@ -542,4 +542,5 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
+
 
