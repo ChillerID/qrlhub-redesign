@@ -70,7 +70,6 @@ function MobileMenu({
 }) {
   const [open, setOpen] = React.useState(false);
 
-  // Prevent background scroll when the mobile menu is open
   React.useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -81,55 +80,53 @@ function MobileMenu({
   }, [open]);
 
   return (
-    <div className="md:hidden relative">
+    <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
         className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition"
+        aria-label="Menu"
       >
         ☰
       </button>
 
       {open && (
-        <>
+        <div className="fixed inset-0 z-50 md:hidden">
           {/* Backdrop */}
-          <button
-            aria-label="Close menu"
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
           />
 
-          {/* Panel */}
+          {/* Drawer */}
           <div
             className={cx(
-              "fixed z-50 md:hidden top-16 w-[min(92vw,360px)] rounded-2xl bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] shadow-2xl p-4",
-              "max-h-[calc(100vh-5rem)] overflow-y-auto",
+              "absolute top-16 w-[min(92vw,360px)] rounded-2xl bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] shadow-2xl p-4 flex flex-col max-h-[calc(100vh-5rem)]",
               dir === "rtl" ? "left-4" : "right-4"
             )}
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-sm font-semibold text-[color:var(--fg)]">Menu</div>
-              <button
-                onClick={() => setOpen(false)}
-                className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition"
-                aria-label="Close"
-              >
-                ✕
-              </button>
+            <div className="space-y-2 text-sm overflow-y-auto pr-1">
+              {[
+                { label: "Home", href: "#research" },
+                { label: "About", href: "#about" },
+                { label: "QRL Story", href: "#research" },
+                { label: "QRL FAQ", href: "#network" },
+                { label: "Quantum News", href: "#developers" },
+                { label: "Qubit Tracker", href: "#ecosystem" },
+                { label: "QRL 2.0", href: "#ecosystem" },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)] transition"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
 
-            <div className="space-y-2 text-sm">
-              <a onClick={() => setOpen(false)} href="#research" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">Home</a>
-              <a onClick={() => setOpen(false)} href="#about" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">About</a>
-              <a onClick={() => setOpen(false)} href="#research" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">QRL Story</a>
-              <a onClick={() => setOpen(false)} href="#network" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">QRL FAQ</a>
-              <a onClick={() => setOpen(false)} href="#developers" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">Quantum News</a>
-              <a onClick={() => setOpen(false)} href="#ecosystem" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">Qubit Tracker</a>
-              <a onClick={() => setOpen(false)} href="#ecosystem" className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]">QRL 2.0</a>
-            </div>
-
-            <div className="mt-4 pt-4 border-t border-[color:var(--border)] space-y-3">
-              {/* Mobile-friendly controls: native select (scrollable) */}
-              <label className="block">
+            <div className="mt-auto pt-4 border-t border-[color:var(--border)] space-y-3">
+              <div>
                 <div className="text-xs text-[color:var(--muted)] mb-1">Theme</div>
                 <select
                   value={theme}
@@ -137,29 +134,23 @@ function MobileMenu({
                   className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
                 >
                   {THEMES.map((t) => (
-                    <option key={t.code} value={t.code}>
-                      {t.label}
-                    </option>
+                    <option key={t.code} value={t.code}>{t.label}</option>
                   ))}
                 </select>
-              </label>
+              </div>
 
-              <label className="block">
+              <div>
                 <div className="text-xs text-[color:var(--muted)] mb-1">Language</div>
                 <select
                   value={lang}
-                  onChange={(e) => {
-                    setLang(e.target.value);
-                  }}
+                  onChange={(e) => setLang(e.target.value)}
                   className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
                 >
                   {LANGUAGES.map((l) => (
-                    <option key={l.code} value={l.code}>
-                      {l.label}
-                    </option>
+                    <option key={l.code} value={l.code}>{l.label}</option>
                   ))}
                 </select>
-              </label>
+              </div>
 
               <a
                 href="https://theqrl.org"
@@ -171,7 +162,7 @@ function MobileMenu({
               </a>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
