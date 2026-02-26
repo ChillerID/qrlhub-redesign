@@ -80,18 +80,18 @@ function MobileMenu({
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden relative z-[70] isolate">
       <button
         onClick={() => setOpen(!open)}
-        className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition"
+        className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition text-3xl leading-none"
         aria-label="Menu"
       >
-        ☰
+        {open ? "✕" : "☰"}
       </button>
 
       <div
         className={cx(
-          "fixed inset-0 z-50 md:hidden transition-opacity duration-200",
+          "fixed inset-0 z-40 md:hidden transition-opacity duration-200",
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
@@ -371,7 +371,7 @@ export default function QRLHubHomepage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-5xl md:text-6xl font-bold tracking-tight leading-tight"
+                className="text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05]"
               >
                 {t("heroTitle")}
               </motion.h1>
@@ -380,7 +380,7 @@ export default function QRLHubHomepage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6 }}
-                className="mt-6 text-lg text-[color:var(--muted)] max-w-2xl"
+                className="mt-6 text-lg md:text-xl text-[color:var(--muted)] max-w-2xl leading-relaxed"
               >
                 {t("heroSubtitle")}
               </motion.p>
@@ -502,7 +502,7 @@ export default function QRLHubHomepage() {
       {/* ================= RESEARCH ================= */}
       <section id="research" className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Why Post‑Quantum Matters Now</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[color:var(--fg)] mb-12">Why Post‑Quantum Matters Now</h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { title: "Hardware Progress", icon: Cpu },
@@ -521,7 +521,7 @@ export default function QRLHubHomepage() {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(59,130,246,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-tight text-[color:var(--fg)]">{title}</h3>
                 </div>
                 <p className="text-sm text-[color:var(--muted)]">
                   Understanding quantum impact and long‑term blockchain security implications.
@@ -535,7 +535,7 @@ export default function QRLHubHomepage() {
       {/* ================= QRL APPROACH ================= */}
       <section className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">The QRL Approach</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[color:var(--fg)] mb-12">The QRL Approach</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Mainnet Since 2018", icon: Shield },
@@ -553,7 +553,7 @@ export default function QRLHubHomepage() {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(16,185,129,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-tight text-[color:var(--fg)]">{title}</h3>
                 </div>
                 <p className="text-sm text-[color:var(--muted)]">Post‑quantum security designed from day one.</p>
               </div>
@@ -565,7 +565,7 @@ export default function QRLHubHomepage() {
       {/* ================= NEWS ================= */}
       <section className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Quantum News & Analysis</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[color:var(--fg)] mb-12">Quantum News & Analysis</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Hardware Threshold Update", icon: Activity },
@@ -583,7 +583,7 @@ export default function QRLHubHomepage() {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(99,102,241,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-tight text-[color:var(--fg)]">{title}</h3>
                 </div>
                 <p className="text-sm text-[color:var(--muted)]">Latest research and ecosystem developments.</p>
               </div>
@@ -595,7 +595,7 @@ export default function QRLHubHomepage() {
       {/* ================= FAQ ================= */}
       <section className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">The Questions Crypto Avoids</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[color:var(--fg)] mb-12">The Questions Crypto Avoids</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {["What is the migration plan?","How long do upgrades take?","Can legacy chains pivot safely?","Why is crypto structurally exposed?"].map((item)=> (
               <div key={item} className={cx(
@@ -614,7 +614,7 @@ export default function QRLHubHomepage() {
       {/* ================= NETWORK ================= */}
       <section id="network" className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Network Snapshot</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[color:var(--fg)] mb-12">Network Snapshot</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "XMSS Security Model", icon: Shield },
@@ -632,7 +632,7 @@ export default function QRLHubHomepage() {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(251,191,36,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-tight text-[color:var(--fg)]">{title}</h3>
                 </div>
               </div>
             ))}
@@ -643,7 +643,7 @@ export default function QRLHubHomepage() {
       {/* ================= DEVELOPERS ================= */}
       <section id="developers" className="py-20 border-t border-[color:var(--border)]">
         <Container>
-          <h2 className="text-3xl font-bold text-[color:var(--fg)] mb-12">Developers & Community</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[color:var(--fg)] mb-12">Developers & Community</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Documentation", icon: BookOpen },
@@ -661,7 +661,7 @@ export default function QRLHubHomepage() {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <Icon className="w-7 h-7 text-[color:var(--primary)] drop-shadow-[0_6px_18px_rgba(59,130,246,0.6)]" strokeWidth={1.5} />
-                  <h3 className="text-lg font-semibold text-[color:var(--fg)]">{title}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-tight text-[color:var(--fg)]">{title}</h3>
                 </div>
                 <p className="text-sm text-[color:var(--muted)]">Explore resources and join the ecosystem.</p>
               </div>
