@@ -74,12 +74,16 @@ function MobileMenu({
   lang,
   setLang,
   dir,
+  page,
+  setPage,
 }: {
   theme: Theme;
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
   lang: string;
   setLang: React.Dispatch<React.SetStateAction<string>>;
   dir: "ltr" | "rtl";
+  page: Page;
+  setPage: React.Dispatch<React.SetStateAction<Page>>;
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -126,25 +130,34 @@ function MobileMenu({
           )}
         >
           <div className="space-y-2 text-sm overflow-y-auto pr-1">
-            {[
-              { label: "Home", href: "#research" },
-              { label: "About", href: "#about" },
-              { label: "QRL Story", href: "#research" },
-              { label: "FAQ", href: "#network" },
-              { label: "News", href: "#developers" },
-              { label: "Qubit Tracker", href: "#ecosystem" },
-              { label: "QRL 2.0", href: "#ecosystem" },
-              { label: "Community Projects", href: "#community" },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)] transition"
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV_ITEMS.map((item) =>
+              item.page ? (
+                <button
+                  key={item.label}
+                  onClick={() => {
+                    setPage(item.page!);
+                    setOpen(false);
+                  }}
+                  className={cx(
+                    "block w-full text-left rounded-xl px-3 py-2 transition",
+                    page === item.page
+                      ? "text-[color:var(--fg)] bg-[color:var(--surfaceHover)]"
+                      : "text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)]"
+                  )}
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.hash}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)] transition"
+                >
+                  {item.label}
+                </a>
+              )
+            )}
           </div>
 
           <div className="mt-auto pt-4 border-t border-[color:var(--border)] space-y-3">
@@ -391,7 +404,7 @@ export default function QRLHubHomepage() {
             </nav>
 
             {/* Mobile Menu Button */}
-            <MobileMenu theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} dir={dir} />
+            <MobileMenu theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} dir={dir} page={page} setPage={setPage} />
           </div>
         </Container>
       </header>
