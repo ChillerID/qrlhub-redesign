@@ -89,81 +89,92 @@ function MobileMenu({
         ☰
       </button>
 
-      {open && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          />
+      <div
+        className={cx(
+          "fixed inset-0 z-50 md:hidden transition-opacity duration-200",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      >
+        {/* Backdrop */}
+        <div
+          className={cx(
+            "absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-200",
+            open ? "opacity-100" : "opacity-0"
+          )}
+          onClick={() => setOpen(false)}
+        />
 
-          {/* Drawer */}
-          <div
-            className={cx(
-              "absolute top-16 w-[min(92vw,360px)] rounded-2xl bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] shadow-2xl p-4 flex flex-col max-h-[calc(100vh-5rem)]",
-              dir === "rtl" ? "left-4" : "right-4"
-            )}
-          >
-            <div className="space-y-2 text-sm overflow-y-auto pr-1">
-              {[
-                { label: "Home", href: "#research" },
-                { label: "About", href: "#about" },
-                { label: "QRL Story", href: "#research" },
-                { label: "QRL FAQ", href: "#network" },
-                { label: "Quantum News", href: "#developers" },
-                { label: "Qubit Tracker", href: "#ecosystem" },
-                { label: "QRL 2.0", href: "#ecosystem" },
-              ].map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)] transition"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-
-            <div className="mt-auto pt-4 border-t border-[color:var(--border)] space-y-3">
-              <div>
-                <div className="text-xs text-[color:var(--muted)] mb-1">Theme</div>
-                <select
-                  value={theme}
-                  onChange={(e) => setTheme(e.target.value as Theme)}
-                  className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
-                >
-                  {THEMES.map((t) => (
-                    <option key={t.code} value={t.code}>{t.label}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <div className="text-xs text-[color:var(--muted)] mb-1">Language</div>
-                <select
-                  value={lang}
-                  onChange={(e) => setLang(e.target.value)}
-                  className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
-                >
-                  {LANGUAGES.map((l) => (
-                    <option key={l.code} value={l.code}>{l.label}</option>
-                  ))}
-                </select>
-              </div>
-
+        {/* Drawer */}
+        <div
+          className={cx(
+            "absolute top-16 w-[min(92vw,360px)] rounded-2xl bg-[color:var(--surfaceSolid)] border border-[color:var(--border)] shadow-2xl p-4 flex flex-col max-h-[calc(100vh-5rem)] transition-all duration-200",
+            dir === "rtl" ? "left-4" : "right-4",
+            open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+          )}
+        >
+          <div className="space-y-2 text-sm overflow-y-auto pr-1">
+            {[
+              { label: "Home", href: "#research" },
+              { label: "About", href: "#about" },
+              { label: "QRL Story", href: "#research" },
+              { label: "QRL FAQ", href: "#network" },
+              { label: "Quantum News", href: "#developers" },
+              { label: "Qubit Tracker", href: "#ecosystem" },
+              { label: "QRL 2.0", href: "#ecosystem" },
+            ].map((item) => (
               <a
-                href="https://theqrl.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition text-center"
+                key={item.label}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="block rounded-xl px-3 py-2 text-[color:var(--muted)] hover:text-[color:var(--fg)] hover:bg-[color:var(--surfaceHover)] transition"
               >
-                Official Site → theqrl.org
+                {item.label}
               </a>
+            ))}
+          </div>
+
+          <div className="mt-auto pt-4 border-t border-[color:var(--border)] space-y-3">
+            <div>
+              <div className="text-xs text-[color:var(--muted)] mb-1">Theme</div>
+              <select
+                value={theme}
+                onChange={(e) => setTheme(e.target.value as Theme)}
+                className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
+              >
+                {THEMES.map((t) => (
+                  <option key={t.code} value={t.code}>
+                    {t.label}
+                  </option>
+                ))}
+              </select>
             </div>
+
+            <div>
+              <div className="text-xs text-[color:var(--muted)] mb-1">Language</div>
+              <select
+                value={lang}
+                onChange={(e) => setLang(e.target.value)}
+                className="w-full rounded-xl px-3 py-2 bg-[color:var(--surfaceHover)] border border-[color:var(--border)] text-[color:var(--fg)]"
+              >
+                {LANGUAGES.map((l) => (
+                  <option key={l.code} value={l.code}>
+                    {l.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <a
+              href="https://theqrl.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition text-center"
+            >
+              Official Site → theqrl.org
+            </a>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -502,9 +513,9 @@ export default function QRLHubHomepage() {
               <div
                 key={title}
                 className={cx(
-                "rounded-2xl p-6 transition",
+                "rounded-3xl p-6 transition",
                 theme === "light"
-                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  ? "bg-blue-50/40 backdrop-blur-sm shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
                   : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
               )}
               >
@@ -534,9 +545,9 @@ export default function QRLHubHomepage() {
               <div
                 key={title}
                 className={cx(
-                "rounded-2xl p-8 transition",
+                "rounded-3xl p-8 transition",
                 theme === "light"
-                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  ? "bg-blue-50/40 backdrop-blur-sm shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
                   : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
               )}
               >
@@ -564,9 +575,9 @@ export default function QRLHubHomepage() {
               <div
                 key={title}
                 className={cx(
-                "rounded-2xl p-8 transition",
+                "rounded-3xl p-8 transition",
                 theme === "light"
-                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  ? "bg-blue-50/40 backdrop-blur-sm shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
                   : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
               )}
               >
@@ -613,9 +624,9 @@ export default function QRLHubHomepage() {
               <div
                 key={title}
                 className={cx(
-                "rounded-2xl p-8 transition",
+                "rounded-3xl p-8 transition",
                 theme === "light"
-                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  ? "bg-blue-50/40 backdrop-blur-sm shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
                   : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
               )}
               >
@@ -642,9 +653,9 @@ export default function QRLHubHomepage() {
               <div
                 key={title}
                 className={cx(
-                "rounded-2xl p-8 transition",
+                "rounded-3xl p-8 transition",
                 theme === "light"
-                  ? "bg-blue-50/60 shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
+                  ? "bg-blue-50/40 backdrop-blur-sm shadow-lg shadow-black/5 border border-transparent hover:shadow-xl"
                   : "bg-[color:var(--surface)] border border-[color:var(--border)] hover:border-[color:var(--primary)]/40"
               )}
               >
