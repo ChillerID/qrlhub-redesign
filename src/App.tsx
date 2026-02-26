@@ -319,13 +319,13 @@ export default function QRLHubHomepage() {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[color:var(--muted)]">
-              <a href="#research" className="hover:text-[color:var(--fg)] transition">Home</a>
-              <a href="#about" className="hover:text-[color:var(--fg)] transition">About</a>
-              <a href="#research" className="hover:text-[color:var(--fg)] transition">QRL Story</a>
-              <a href="#network" className="hover:text-[color:var(--fg)] transition">QRL FAQ</a>
-              <a href="#developers" className="hover:text-[color:var(--fg)] transition">Quantum News</a>
-              <a href="#ecosystem" className="hover:text-[color:var(--fg)] transition">Qubit Tracker</a>
-              <a href="#ecosystem" className="hover:text-[color:var(--fg)] transition">QRL 2.0</a>
+              <a href="#research" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">Home</a>
+              <a href="#about" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">About</a>
+              <a href="#research" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">QRL Story</a>
+              <a href="#network" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">QRL FAQ</a>
+              <a href="#developers" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">Quantum News</a>
+              <a href="#ecosystem" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">Qubit Tracker</a>
+              <a href="#ecosystem" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">QRL 2.0</a>
 
               <ThemeSelector theme={theme} onChange={setTheme} />
               <LanguageSelector selected={lang} onChange={setLang} />
@@ -351,6 +351,7 @@ export default function QRLHubHomepage() {
         {/* Darker left gradient like screenshot */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_40%,rgba(59,130,246,0.35),transparent_45%),radial-gradient(circle_at_85%_20%,rgba(16,185,129,0.18),transparent_45%)]" />
         <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[color:var(--bg)]/60 pointer-events-none" />
 
         <Container>
           <div className="relative py-16 md:py-20 grid md:grid-cols-12 gap-12 items-center">
@@ -376,7 +377,7 @@ export default function QRLHubHomepage() {
               <div className="mt-10 flex flex-wrap gap-4">
                 <button
                   className={cx(
-                    "rounded-2xl px-6 py-3 shadow-md transition flex items-center gap-2",
+                    "rounded-2xl px-6 py-3 shadow-md transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2",
                     "bg-blue-400 hover:bg-blue-500 text-white shadow-md hover:shadow-blue-400/40"
                   )}
                 >
@@ -385,7 +386,7 @@ export default function QRLHubHomepage() {
 
                 <button
                   className={cx(
-                    "rounded-2xl px-6 py-3 font-semibold transition flex items-center gap-2",
+                    "rounded-2xl px-6 py-3 font-semibold transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2",
                     "bg-amber-400 hover:bg-amber-500 text-slate-900 shadow-md hover:shadow-amber-400/40"
                   )}
                 >
