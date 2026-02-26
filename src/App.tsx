@@ -520,7 +520,7 @@ export default function QRLHubHomepage() {
                       </div>
 
                       {/* Divider */}
-                      <div className="mt-6 pt-6 border-t border-[color:var(--border)] flex items-center justify-between gap-4">
+                      <div className="mt-6 pt-6 border-t border-[color:var(--border)] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div className="flex items-center gap-4">
                           <img
                             src="/qrl-logo.png"
@@ -541,7 +541,7 @@ export default function QRLHubHomepage() {
                           href="https://theqrl.org"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition whitespace-nowrap inline-flex items-center"
+                          className="px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition whitespace-nowrap inline-flex items-center w-full md:w-auto"
                         >
                           Visit Official Site
                         </a>
@@ -853,4 +853,5 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
+
 
