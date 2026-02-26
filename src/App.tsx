@@ -117,10 +117,11 @@ function MobileMenu({
               { label: "Home", href: "#research" },
               { label: "About", href: "#about" },
               { label: "QRL Story", href: "#research" },
-              { label: "QRL FAQ", href: "#network" },
-              { label: "Quantum News", href: "#developers" },
+              { label: "FAQ", href: "#network" },
+              { label: "News", href: "#developers" },
               { label: "Qubit Tracker", href: "#ecosystem" },
               { label: "QRL 2.0", href: "#ecosystem" },
+              { label: "Community Projects", href: "#community" },
             ].map((item) => (
               <a
                 key={item.label}
@@ -333,10 +334,11 @@ export default function QRLHubHomepage() {
               <a href="#research" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">Home</a>
               <a href="#about" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">About</a>
               <a href="#research" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">QRL Story</a>
-              <a href="#network" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">QRL FAQ</a>
-              <a href="#developers" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">Quantum News</a>
+              <a href="#network" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">FAQ</a>
+              <a href="#developers" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">News</a>
               <a href="#ecosystem" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">Qubit Tracker</a>
               <a href="#ecosystem" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">QRL 2.0</a>
+              <a href="#community" className="relative hover:text-[color:var(--fg)] transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[color:var(--primary)] after:transition-all hover:after:w-full">Community Projects</a>
 
               <ThemeSelector theme={theme} onChange={setTheme} />
               <LanguageSelector selected={lang} onChange={setLang} />
