@@ -98,7 +98,7 @@ function MobileMenu({
         {/* Backdrop */}
         <div
           className={cx(
-            "absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-200",
+            "absolute inset-0 bg-black/40 transition-opacity duration-200",
             open ? "opacity-100" : "opacity-0"
           )}
           onClick={() => setOpen(false)}
