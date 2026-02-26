@@ -271,6 +271,26 @@ function ThemeSelector({
   );
 }
 
+// ================= SIMPLE I18N LOADER =================
+function useTranslations(lang: string) {
+  const [t, setT] = React.useState<Record<string, string>>({});
+
+  React.useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch(`/locales/${lang}.json`);
+        const data = await res.json();
+        setT(data);
+      } catch (e) {
+        console.error("Translation load failed", e);
+      }
+    }
+    load();
+  }, [lang]);
+
+  return (key: string) => t[key] || key;
+}
+
 export default function QRLHubHomepage() {
   const [lang, setLang] = React.useState("en");
   const [theme, setTheme] = React.useState<Theme>("dark");
@@ -281,6 +301,8 @@ export default function QRLHubHomepage() {
   }, [lang]);
 
   const dir = (LANGUAGES.find((l) => l.code === lang)?.dir ?? "ltr") as "ltr" | "rtl";
+
+  const t = useTranslations(lang);
 
   return (
     <div
@@ -348,7 +370,7 @@ export default function QRLHubHomepage() {
                 transition={{ duration: 0.6 }}
                 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight"
               >
-                Welcome to QRL Hub
+                {t("heroTitle")}
               </motion.h1>
 
               <motion.p
@@ -357,9 +379,7 @@ export default function QRLHubHomepage() {
                 transition={{ delay: 0.15, duration: 0.6 }}
                 className="mt-6 text-lg text-[color:var(--muted)] max-w-2xl"
               >
-                Your source for quantum computing threats, blockchain security,
-                and the quantum‑resistant future of cryptocurrency — centered on
-                the Quantum Resistant Ledger (QRL).
+                {t("heroSubtitle")}
               </motion.p>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -369,7 +389,7 @@ export default function QRLHubHomepage() {
                     "bg-blue-400 hover:bg-blue-500 text-white shadow-md hover:shadow-blue-400/40"
                   )}
                 >
-                  Explore Quantum News <ArrowRight className="w-4 h-4" />
+                  {t("exploreNews")} <ArrowRight className="w-4 h-4" />
                 </button>
 
                 <button
@@ -378,7 +398,7 @@ export default function QRLHubHomepage() {
                     "bg-amber-400 hover:bg-amber-500 text-slate-900 shadow-md hover:shadow-amber-400/40"
                   )}
                 >
-                  Explore QRL 2.0 <ArrowRight className="w-4 h-4" />
+                  {t("exploreQrl")} <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
 
@@ -415,7 +435,7 @@ export default function QRLHubHomepage() {
                   </div>
 
                   <h3 className="mt-3 text-xl font-semibold text-[color:var(--fg)]">
-                    Quantum-Safe Cryptocurrency: $QRL
+                    {t("heroCardTitle")}
                   </h3>
 
                   <p className="mt-3 text-sm text-[color:var(--muted)]">
@@ -425,9 +445,9 @@ export default function QRLHubHomepage() {
 
                   <div className="mt-5 grid grid-cols-3 gap-3">
                     {[
-                      { label: "Mainnet Since", value: "2018" },
-                      { label: "Core", value: "QRL 1.x" },
-                      { label: "Next", value: "QRL 2.0" },
+                      { label: t("mainnetSince"), value: "2018" },
+                      { label: t("core"), value: "QRL 1.x" },
+                      { label: t("next"), value: "QRL 2.0" },
                     ].map((item) => (
                       <div
                         key={item.label}
