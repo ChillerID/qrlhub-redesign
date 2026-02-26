@@ -679,32 +679,32 @@ export default function QRLHubHomepage() {
 
             {/* Official social row */}
             <div className="text-xs text-[color:var(--muted)] mb-4 text-center uppercase tracking-wider">
-              QRL official websites:
+              Follow QRL:
             </div>
 
             <div className="flex items-center justify-center gap-8 flex-wrap">
-              <a href="https://discord.gg/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.theqrl.org/discord" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <DiscordIcon className="w-6 h-6" />
               </a>
-              <a href="https://x.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://x.com/qrledger" target="_blank" rel="noopener noreferrer" aria-label="X (former Twitter)" title="X (former Twitter)" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <XIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.reddit.com/r/QRL/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.reddit.com/r/QRL/" target="_blank" rel="noopener noreferrer" aria-label="Reddit" title="Reddit" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <RedditIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.facebook.com/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.facebook.com/theqrl" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <FacebookIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.youtube.com/@theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.youtube.com/@qrledger" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <YouTubeIcon className="w-6 h-6" />
               </a>
-              <a href="https://t.me/theqrl" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://t.me/QRLedgerOfficial" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <TelegramIcon className="w-6 h-6" />
               </a>
-              <a href="https://github.com/theQRL" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://github.com/theQRL" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <GitHubIcon className="w-6 h-6" />
               </a>
-              <a href="https://theqrl.org" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform" aria-label="Official Website">
+              <a href="https://theqrl.org" target="_blank" rel="noopener noreferrer" aria-label="theqrl.org" title="theqrl.org" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
                 <Globe className="w-6 h-6" />
               </a>
             </div>
