@@ -304,20 +304,35 @@ function ThemeSelector({
 function useTranslations(lang: string) {
   const [t, setT] = React.useState<Record<string, string>>({});
 
+  // Fallback defaults to guarantee hero keys always exist
+  const DEFAULT_TRANSLATIONS: Record<string, string> = {
+    heroTitle: "Quantum‑Resistant Blockchain Intelligence",
+    heroSubtitle:
+      "Independent analysis and education on post‑quantum cryptography and the Quantum Resistant Ledger.",
+    exploreNews: "Explore News",
+    exploreQrl: "Explore QRL",
+  };
+
   React.useEffect(() => {
     async function load() {
       try {
         const res = await fetch(`/locales/${lang}.json`);
+        if (!res.ok) {
+          setT(DEFAULT_TRANSLATIONS);
+          return;
+        }
         const data = await res.json();
-        setT(data);
+        // Merge defaults so required keys always exist
+        setT({ ...DEFAULT_TRANSLATIONS, ...data });
       } catch (e) {
         console.error("Translation load failed", e);
+        setT(DEFAULT_TRANSLATIONS);
       }
     }
     load();
   }, [lang]);
 
-  return (key: string) => t[key] || key;
+  return (key: string) => t[key] ?? DEFAULT_TRANSLATIONS[key] ?? key;
 }
 
 export default function QRLHubHomepage() {
