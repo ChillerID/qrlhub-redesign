@@ -42,7 +42,7 @@ const LANGUAGES = [
   { code: "zh-TW", label: "繁體中文", dir: "ltr" as const },
 ];
 
-type Theme = "dark" | "light" | "ar";
+type Theme = "dark" | "light" | "green" | "darkNew" | "lightNew" | "greenNew";
 
 type Page = "home" | "about";
 
@@ -59,7 +59,10 @@ const NAV_ITEMS: { label: string; page?: Page; hash?: string }[] = [
 const THEMES: { code: Theme; label: string }[] = [
   { code: "dark", label: "Dark" },
   { code: "light", label: "Light" },
-  { code: "ar", label: "Arabic (Green)" },
+  { code: "green", label: "Green" },
+  { code: "darkNew", label: "Dark New" },
+  { code: "lightNew", label: "Light New" },
+  { code: "greenNew", label: "Green New" },
 ];
 
 function cx(...classes: Array<string | false | undefined | null>) {
@@ -341,7 +344,7 @@ export default function QRLHubHomepage() {
   const [page, setPage] = React.useState<Page>("home");
 
   React.useEffect(() => {
-    if (lang === "ar") setTheme("ar");
+    if (lang === "ar") setTheme("green");
   }, [lang]);
 
   React.useEffect(() => {
@@ -428,7 +431,7 @@ export default function QRLHubHomepage() {
         <>
           {/* ================= HERO ================= */}
           <section className="relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_40%,rgba(59,130,246,0.35),transparent_45%),radial-gradient(circle_at_85%_20%,rgba(16,185,129,0.18),transparent_45%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_40%,var(--primaryGlow),transparent_45%),radial-gradient(circle_at_85%_20%,var(--primaryShadow),transparent_45%)]" />
             <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:72px_72px]" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[color:var(--bg)]/60 pointer-events-none" />
 
@@ -456,13 +459,13 @@ export default function QRLHubHomepage() {
                   {/* Hero Buttons */}
                   <div className="mt-10 flex flex-wrap gap-4">
                     <button
-                      className="rounded-2xl px-6 py-3 shadow-md transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-blue-400 hover:bg-blue-500 text-white hover:shadow-blue-400/40"
+                      className="rounded-2xl px-6 py-3 shadow-md transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white shadow-lg shadow-[color:var(--primaryShadow)]"
                     >
                       {t("exploreNews")} <ArrowRight className="w-4 h-4" />
                     </button>
 
                     <button
-                      className="rounded-2xl px-6 py-3 font-semibold transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 hover:shadow-amber-400/40"
+                      className="rounded-2xl px-6 py-3 font-semibold transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-[color:var(--surfaceHover)] hover:bg-[color:var(--surface)] text-[color:var(--fg)] border border-[color:var(--border)]"
                     >
                       {t("exploreQrl")} <ArrowRight className="w-4 h-4" />
                     </button>
@@ -736,34 +739,34 @@ export default function QRLHubHomepage() {
             </div>
 
             <div className="flex items-center justify-center gap-8 flex-wrap">
-              <a href="https://www.theqrl.org/discord" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.theqrl.org/discord" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <DiscordIcon className="w-6 h-6" />
               </a>
-              <a href="https://x.com/qrledger" target="_blank" rel="noopener noreferrer" aria-label="X (former Twitter)" title="X (former Twitter)" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://x.com/qrledger" target="_blank" rel="noopener noreferrer" aria-label="X (former Twitter)" title="X (former Twitter)" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <XIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.reddit.com/r/QRL/" target="_blank" rel="noopener noreferrer" aria-label="Reddit" title="Reddit" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.reddit.com/r/QRL/" target="_blank" rel="noopener noreferrer" aria-label="Reddit" title="Reddit" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <RedditIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.facebook.com/theqrl" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.facebook.com/theqrl" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <FacebookIcon className="w-6 h-6" />
               </a>
-              <a href="https://www.youtube.com/@qrledger" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://www.youtube.com/@qrledger" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <YouTubeIcon className="w-6 h-6" />
               </a>
-              <a href="https://t.me/QRLedgerOfficial" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://t.me/QRLedgerOfficial" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <TelegramIcon className="w-6 h-6" />
               </a>
-              <a href="https://github.com/theQRL" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://github.com/theQRL" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <GitHubIcon className="w-6 h-6" />
               </a>
-              <a href="https://theqrl.org" target="_blank" rel="noopener noreferrer" aria-label="theqrl.org" title="theqrl.org" className="text-slate-500 hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:scale-110 transition-transform">
+              <a href="https://theqrl.org" target="_blank" rel="noopener noreferrer" aria-label="theqrl.org" title="theqrl.org" className="text-[color:var(--muted)] hover:text-[color:var(--fg)] transition duration-300 hover:drop-shadow-[0_0_12px_var(--primaryGlow)] hover:scale-110 transition-transform">
                 <Globe className="w-6 h-6" />
               </a>
             </div>
 
             {/* Bottom bar */}
-            <div className="mt-10 pt-6 border-t border-[color:var(--border)] text-slate-500 text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="mt-10 pt-6 border-t border-[color:var(--border)] text-[color:var(--muted)] text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="flex items-center gap-6">
                 <a href="#privacy" className="hover:text-[color:var(--fg)] transition">Privacy Policy</a>
                 <a href="#terms" className="hover:text-[color:var(--fg)] transition">Terms of Use</a>
@@ -853,5 +856,4 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
-
 
