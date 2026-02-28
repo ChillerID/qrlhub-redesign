@@ -472,8 +472,8 @@ export default function QRLHubHomepage() {
                   </div>
 
                   {/* Meta Row */}
-                  <div className="mt-6 flex items-center gap-3 text-sm text-[color:var(--muted)]">
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-[color:var(--badgeBg)] border border-[color:var(--badgeBorder)] text-[color:var(--badgeText)]">
+                  <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-[color:var(--muted)]">
+                    <span className="inline-flex shrink-0 items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase whitespace-nowrap bg-[color:var(--badgeBg)] border border-[color:var(--badgeBorder)] text-[color:var(--badgeText)]">
                       <span className="w-2 h-2 rounded-full bg-[color:var(--badgeDot)]"></span>
                       Updated Feb 16, 2026
                     </span>
