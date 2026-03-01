@@ -340,7 +340,7 @@ function useTranslations(lang: string) {
 
 export default function QRLHubHomepage() {
   const [lang, setLang] = React.useState("en");
-  const [theme, setTheme] = React.useState<Theme>("dark");
+  const [theme, setTheme] = React.useState<Theme>("darkNew");
   const [page, setPage] = React.useState<Page>("home");
 
   React.useEffect(() => {
