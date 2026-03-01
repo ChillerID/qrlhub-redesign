@@ -24,7 +24,7 @@
   --primaryShadow: rgba(59, 130, 246, 0.55);
   --primaryGlow: rgba(59, 130, 246, 0.35);
 
-  --securityAccent: #3b82f6;
+  --securityAccent: #f8fafc;
 
   --accent: #ffb81c;
   --accentHover: #d79a00;
@@ -64,7 +64,7 @@
   --primaryShadow: rgba(37, 99, 235, 0.4);
   --primaryGlow: rgba(37, 99, 235, 0.25);
 
-  --securityAccent: #2563eb;
+  --securityAccent: #0f172a;
 
   --accent: #ffb81c;
   --accentHover: #d79a00;
@@ -107,7 +107,7 @@
   --primaryShadow: rgba(20, 184, 122, 0.55);
   --primaryGlow: rgba(20, 184, 122, 0.35);
 
-  --securityAccent: #14b87a;
+  --securityAccent: #ecfdf5;
 
   --accent: #ffb81c;
   --accentHover: #d79a00;
