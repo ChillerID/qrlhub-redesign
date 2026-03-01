@@ -44,7 +44,7 @@ const LANGUAGES = [
 
 type Theme = "dark" | "light" | "green" | "darkNew" | "lightNew" | "greenNew";
 
-type Page = "home" | "about";
+type Page = "home" | "about" | "qrl2";
 
 // Centralized navigation config (easy to extract later)
 const NAV_ITEMS: { label: string; page?: Page; hash?: string }[] = [
@@ -54,7 +54,7 @@ const NAV_ITEMS: { label: string; page?: Page; hash?: string }[] = [
   { label: "FAQ", hash: "#network" },
   { label: "News", hash: "#developers" },
   { label: "Qubit Tracker", hash: "#ecosystem" },
-  { label: "QRL 2.0", hash: "#qrl2.0" },
+  { label: "QRL 2.0", page: "qrl2" },
 ];
 const THEMES: { code: Theme; label: string }[] = [
 //  { code: "dark", label: "DarkOld" },
@@ -110,10 +110,7 @@ function MobileMenu({
       </button>
 
       <div
-        className={cx(
-          "fixed inset-0 z-40 md:hidden transition-opacity duration-200",
-          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
+        className="relative rounded-[32px] backdrop-blur-xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-xl shadow-[color:var(--primaryShadow)]/30"
       >
         {/* Backdrop */}
         <div
@@ -686,6 +683,126 @@ export default function QRLHubHomepage() {
         </>
       )}
 
+      {page === "qrl2" && (
+        <>
+          {/* ================= SMART HERO ================= */}
+          <section className="relative overflow-hidden border-b border-[color:var(--border)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,var(--primaryGlow),transparent_40%),radial-gradient(circle_at_80%_10%,var(--primaryShadow),transparent_40%)]" />
+            <Container>
+              <div className="relative py-24 md:py-28 grid md:grid-cols-12 gap-12 items-center">
+                <div className="md:col-span-7">
+                  <div className="text-sm uppercase tracking-wide text-[color:var(--muted)] mb-4">
+                    QRL 2.0 • Zond
+                  </div>
+                  <h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6">
+                    Post‑Quantum Smart Contracts
+                  </h1>
+                  <p className="text-xl text-[color:var(--muted)] leading-relaxed max-w-2xl">
+                    An EVM‑compatible execution layer secured by hash‑based signatures at protocol level. No retrofit. No emergency migration. Built quantum‑resistant from genesis logic.
+                  </p>
+                  <div className="mt-10 flex flex-wrap gap-4">
+                    <a
+                      href="https://qrlhub.com/en/zond"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-2xl px-6 py-3 bg-[color:var(--heroBtn)] hover:bg-[color:var(--heroBtnHover)] text-white shadow-lg shadow-[color:var(--heroBtnShadow)] transition flex items-center gap-2"
+                    >
+                      Official Zond Page <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+                <div className="md:col-span-5">
+                  <div className="rounded-3xl p-8 bg-[color:var(--surface)] border border-[color:var(--border)]">
+                    <h3 className="text-lg font-semibold text-[color:var(--fg)] mb-4">
+                      Core Properties
+                    </h3>
+                    <ul className="space-y-3 text-sm text-[color:var(--muted)]">
+                      <li>• Hash‑based post‑quantum signatures</li>
+                      <li>• EVM compatibility</li>
+                      <li>• No cryptographic retrofit required</li>
+                      <li>• Migration‑friendly for Ethereum developers</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </section>
+
+          {/* ================= WHY IT EXISTS ================= */}
+          <section className="py-20 border-b border-[color:var(--border)]">
+            <Container>
+              <div className="max-w-4xl">
+                <h2 className="text-3xl font-semibold mb-8">Why QRL 2.0 Exists</h2>
+                <div className="space-y-6 text-[color:var(--muted)] leading-relaxed">
+                  <p>
+                    Most smart contract platforms rely on elliptic curve cryptography. Quantum computing threatens that foundation.
+                  </p>
+                  <p>
+                    Upgrading a live chain’s cryptography is politically and technically complex. QRL 2.0 avoids that structural risk by integrating post‑quantum security directly into the protocol.
+                  </p>
+                </div>
+              </div>
+            </Container>
+          </section>
+
+          {/* ================= ARCHITECTURE ================= */}
+          <section className="py-20 border-b border-[color:var(--border)]">
+            <Container>
+              <h2 className="text-3xl font-semibold mb-12">Architecture</h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {[
+                  { title: "Signature Layer", desc: "XMSS‑style hash‑based signatures integrated at transaction level." },
+                  { title: "Execution Layer", desc: "EVM‑compatible environment supporting Solidity smart contracts." },
+                  { title: "Security Model", desc: "Quantum resistance designed structurally, not patched later." },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-3xl p-8 bg-[color:var(--surface)] border border-[color:var(--border)]">
+                    <h3 className="text-lg font-semibold text-[color:var(--fg)] mb-3">{item.title}</h3>
+                    <p className="text-sm text-[color:var(--muted)]">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+
+          {/* ================= DEVELOPER FLOW ================= */}
+          <section className="py-20 border-b border-[color:var(--border)]">
+            <Container>
+              <h2 className="text-3xl font-semibold mb-12">Developer Experience</h2>
+              <div className="grid md:grid-cols-2 gap-10 max-w-5xl">
+                {[
+                  { title: "Solidity Compatible", desc: "Reuse contracts and tooling with minimal modifications." },
+                  { title: "Familiar RPC Patterns", desc: "Ethereum‑style interaction model." },
+                  { title: "Future‑Proof Signing", desc: "Transactions use post‑quantum cryptography by default." },
+                  { title: "Long‑Term Stability", desc: "No emergency cryptographic migrations required." },
+                ].map((item) => (
+                  <div key={item.title}>
+                    <h3 className="text-lg font-semibold mb-3 text-[color:var(--fg)]">{item.title}</h3>
+                    <p className="text-[color:var(--muted)]">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+
+          {/* ================= VISION ================= */}
+          <section className="py-20">
+            <Container>
+              <div className="max-w-4xl">
+                <h2 className="text-3xl font-semibold mb-8">Long‑Term Vision</h2>
+                <div className="space-y-6 text-[color:var(--muted)] leading-relaxed">
+                  <p>
+                    QRL 2.0 aims to provide a secure programmable base layer for decentralized finance, identity, and infrastructure in a post‑quantum world.
+                  </p>
+                  <p>
+                    Instead of reacting to quantum breakthroughs, QRL builds cryptographic resilience directly into the foundation.
+                  </p>
+                </div>
+              </div>
+            </Container>
+          </section>
+        </>
+      )}
+
       {page === "about" && (
         <section className="py-20">
           <Container>
@@ -857,4 +974,5 @@ function TelegramIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
+
 
