@@ -14,9 +14,10 @@
 }
 
 /* =====================================================
-   DARK (UNCHANGED)
+   DARK (Old)
 ===================================================== */
 
+/*
 [data-theme="dark"] {
   --bg: #0b0f14;
   --bgHeader: rgba(11, 15, 20, 0.85);
@@ -41,6 +42,8 @@
   --heroBtnHover: var(--primaryHover);
   --heroBtnShadow: var(--primaryShadow);
 }
+*/
+
 
 /* =====================================================
    DARK NEW (Premium Upgrade)
@@ -75,9 +78,10 @@
 }
 
 /* =====================================================
-   LIGHT (UNCHANGED)
+   LIGHT (OLD)
 ===================================================== */
 
+/*
 [data-theme="light"] {
   --bg: #f8fafc;
   --bgHeader: rgba(255, 255, 255, 0.85);
@@ -107,6 +111,8 @@
   --heroBtnHover: #1d4ed8;
   --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
+
+*/
 
 /* =====================================================
    LIGHT NEW (Premium Executive White)
@@ -146,9 +152,10 @@
 }
 
 /* =====================================================
-   GREEN (UNCHANGED)
+   GREEN (OLD)
 ===================================================== */
 
+/*
 [data-theme="green"] {
   --bg: #0f1f17;
   --bgHeader: rgba(15, 31, 23, 0.85);
@@ -173,6 +180,7 @@
   --heroBtnHover: #1d4ed8;
   --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
+*/
 
 /* =====================================================
    GREEN NEW (Premium Deep Emerald)

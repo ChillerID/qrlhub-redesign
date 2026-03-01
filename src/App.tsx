@@ -57,12 +57,12 @@ const NAV_ITEMS: { label: string; page?: Page; hash?: string }[] = [
   { label: "Community Projects", hash: "#community" },
 ];
 const THEMES: { code: Theme; label: string }[] = [
-  { code: "dark", label: "Dark" },
-  { code: "light", label: "Light" },
-  { code: "green", label: "Green" },
-  { code: "darkNew", label: "Dark New" },
-  { code: "lightNew", label: "Light New" },
-  { code: "greenNew", label: "Green New" },
+//  { code: "dark", label: "DarkOld" },
+//  { code: "light", label: "LightOld" },
+//  { code: "green", label: "GreenOld" },
+  { code: "darkNew", label: "Dark" },
+  { code: "lightNew", label: "Light" },
+  { code: "greenNew", label: "Green" },
 ];
 
 function cx(...classes: Array<string | false | undefined | null>) {
@@ -344,7 +344,7 @@ export default function QRLHubHomepage() {
   const [page, setPage] = React.useState<Page>("home");
 
   React.useEffect(() => {
-    if (lang === "ar") setTheme("green");
+    if (lang === "ar") setTheme("greenNew");
   }, [lang]);
 
   React.useEffect(() => {
