@@ -37,44 +37,45 @@
   --accentText: #0b0f14;
   --accentShadow: rgba(255, 184, 28, 0.5);
 
-  /* Hero buttons use theme primary in Dark */
   --heroBtn: var(--primary);
   --heroBtnHover: var(--primaryHover);
   --heroBtnShadow: var(--primaryShadow);
 }
 
 /* =====================================================
-   DARK NEW (REFERENCE STYLE)
+   DARK NEW (Premium Upgrade)
 ===================================================== */
 
 [data-theme="darkNew"] {
-  --bg: #05070a;
-  --bgHeader: rgba(5, 7, 10, 0.85);
-  --surface: #0d1117;
-  --surfaceSolid: #0d1117;
-  --surfaceHover: #161b22;
-  --border: #1f2937;
-  --fg: #f8fafc;
-  --muted: #9ca3af;
+  --bg: #070b12;                        /* deeper contrast */
+  --bgHeader: rgba(7, 11, 18, 0.88);
 
-  --primary: #2563eb;
+  --surface: #111827;                   /* layered navy */
+  --surfaceSolid: #0f172a;
+  --surfaceHover: #1e293b;
+
+  --border: #223047;                    /* richer border tone */
+
+  --fg: #f8fafc;
+  --muted: #a1acc0;                     /* softer steel */
+
+  --primary: #3b82f6;                   /* brighter electric blue */
   --primaryHover: #1d4ed8;
-  --primaryShadow: rgba(37, 99, 235, 0.5);
-  --primaryGlow: rgba(37, 99, 235, 0.3);
+  --primaryShadow: rgba(59, 130, 246, 0.55);
+  --primaryGlow: rgba(59, 130, 246, 0.35);
 
   --accent: #ffb81c;
-  --accentHover: #e6a800;
-  --accentText: #05070a;
-  --accentShadow: rgba(255, 184, 28, 0.5);
+  --accentHover: #d79a00;               /* slightly deeper luxury gold */
+  --accentText: #070b12;
+  --accentShadow: rgba(255, 184, 28, 0.6);
 
-  /* Hero buttons reference */
-  --heroBtn: #2563eb;
+  --heroBtn: #3b82f6;
   --heroBtnHover: #1d4ed8;
-  --heroBtnShadow: rgba(37, 99, 235, 0.5);
+  --heroBtnShadow: rgba(59, 130, 246, 0.6);
 }
 
 /* =====================================================
-   LIGHT (MATCH DARKNEW HERO BUTTONS)
+   LIGHT (UNCHANGED)
 ===================================================== */
 
 [data-theme="light"] {
@@ -94,7 +95,7 @@
 
   --badgeBg: rgba(255, 184, 28, 0.18);
   --badgeBorder: rgba(255, 184, 28, 0.6);
-  --badgeText: #c27a00;      /* darker gold for contrast */
+  --badgeText: #c27a00;
   --badgeDot: #ffb81c;
 
   --accent: #ffb81c;
@@ -102,50 +103,50 @@
   --accentText: #0f172a;
   --accentShadow: rgba(255, 184, 28, 0.4);
 
-  /* Force hero to DarkNew blue */
   --heroBtn: #2563eb;
   --heroBtnHover: #1d4ed8;
   --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
 
 /* =====================================================
-   LIGHT NEW (MATCH DARKNEW HERO BUTTONS)
+   LIGHT NEW (Premium Executive White)
 ===================================================== */
 
 [data-theme="lightNew"] {
   --bg: #ffffff;
-  --bgHeader: rgba(255, 255, 255, 0.9);
+  --bgHeader: rgba(255, 255, 255, 0.92);
+
   --surface: #ffffff;
   --surfaceSolid: #ffffff;
-  --surfaceHover: #f3f4f6;
-  --border: #e5e7eb;
-  --fg: #111827;
-  --muted: #6b7280;
+  --surfaceHover: #f5f7fa;              /* softer premium hover */
+
+  --border: #dde3ec;                    /* refined border */
+
+  --fg: #0f172a;
+  --muted: #5e6b7f;                     /* calmer gray */
 
   --primary: #2563eb;
-  --primaryHover: #1d4ed8;
-  --primaryShadow: rgba(37, 99, 235, 0.3);
-  --primaryGlow: rgba(37, 99, 235, 0.2);
+  --primaryHover: #1e40af;              /* deeper hover */
+  --primaryShadow: rgba(37, 99, 235, 0.4);
+  --primaryGlow: rgba(37, 99, 235, 0.25);
 
-  --badgeBg: rgba(255, 184, 28, 0.18);
-  --badgeBorder: rgba(255, 184, 28, 0.6);
-  --badgeText: #c27a00;      /* darker gold for contrast */
+  --badgeBg: rgba(255, 184, 28, 0.22);     /* slightly stronger */
+  --badgeBorder: #ffb81c;                  /* solid gold border */
+  --badgeText: #9a5f00;                    /* deeper premium gold */
   --badgeDot: #ffb81c;
 
-
   --accent: #ffb81c;
-  --accentHover: #e6a800;
-  --accentText: #111827;
-  --accentShadow: rgba(255, 184, 28, 0.4);
+  --accentHover: #d79a00;
+  --accentText: #0f172a;
+  --accentShadow: rgba(255, 184, 28, 0.45);
 
-  /* Force hero to DarkNew blue */
   --heroBtn: #2563eb;
-  --heroBtnHover: #1d4ed8;
+  --heroBtnHover: #1e40af;
   --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
 
 /* =====================================================
-   GREEN (MATCH DARKNEW HERO BUTTONS ONLY)
+   GREEN (UNCHANGED)
 ===================================================== */
 
 [data-theme="green"] {
@@ -156,7 +157,7 @@
   --surfaceHover: #1f3a2f;
   --border: #1f3a2f;
   --fg: #ecfdf5;
-  --muted: #cbd5e1; /* neutral gray-blue */
+  --muted: #cbd5e1;
 
   --primary: #10b981;
   --primaryHover: #059669;
@@ -168,38 +169,39 @@
   --accentText: #0f1f17;
   --accentShadow: rgba(255, 184, 28, 0.5);
 
-  /* Hero matches DarkNew blue */
   --heroBtn: #2563eb;
   --heroBtnHover: #1d4ed8;
   --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
 
 /* =====================================================
-   GREEN NEW (MATCH DARKNEW HERO BUTTONS ONLY)
+   GREEN NEW (Premium Deep Emerald)
 ===================================================== */
 
 [data-theme="greenNew"] {
-  --bg: #081c15;
-  --bgHeader: rgba(8, 28, 21, 0.85);
-  --surface: #0f2a21;
-  --surfaceSolid: #0f2a21;
-  --surfaceHover: #184d3b;
-  --border: #184d3b;
-  --fg: #e6fffa;
-  --muted: #cbd5e1; /* neutral gray-blue */
+  --bg: #061810;                        /* deeper emerald */
+  --bgHeader: rgba(6, 24, 16, 0.9);
 
-  --primary: #10b981;
-  --primaryHover: #059669;
-  --primaryShadow: rgba(16, 185, 129, 0.45);
-  --primaryGlow: rgba(16, 185, 129, 0.3);
+  --surface: #0d2a20;
+  --surfaceSolid: #0b241c;
+  --surfaceHover: #174435;
+
+  --border: #1c4f3f;
+
+  --fg: #ecfdf5;
+  --muted: #b6d3c9;                     /* refined soft mint */
+
+  --primary: #14b87a;                   /* brighter premium emerald */
+  --primaryHover: #0f8f5c;
+  --primaryShadow: rgba(20, 184, 122, 0.55);
+  --primaryGlow: rgba(20, 184, 122, 0.35);
 
   --accent: #ffb81c;
-  --accentHover: #e6a800;
-  --accentText: #081c15;
-  --accentShadow: rgba(255, 184, 28, 0.5);
+  --accentHover: #d79a00;
+  --accentText: #061810;
+  --accentShadow: rgba(255, 184, 28, 0.6);
 
-  /* Hero matches DarkNew blue */
-  --heroBtn: #2563eb;
+  --heroBtn: #2563eb;                   /* keep DarkNew blue */
   --heroBtnHover: #1d4ed8;
-  --heroBtnShadow: rgba(37, 99, 235, 0.5);
+  --heroBtnShadow: rgba(37, 99, 235, 0.55);
 }
