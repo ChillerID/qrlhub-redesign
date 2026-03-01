@@ -685,42 +685,51 @@ export default function QRLHubHomepage() {
 
       {page === "qrl2" && (
         <>
-          {/* ================= SMART HERO ================= */}
+          {/* ================= HERO ================= */}
           <section className="relative overflow-hidden border-b border-[color:var(--border)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,var(--primaryGlow),transparent_40%),radial-gradient(circle_at_80%_10%,var(--primaryShadow),transparent_40%)]" />
             <Container>
-              <div className="relative py-24 md:py-28 grid md:grid-cols-12 gap-12 items-center">
-                <div className="md:col-span-7">
-                  <div className="text-sm uppercase tracking-wide text-[color:var(--muted)] mb-4">
-                    QRL 2.0 • Zond
+              <div className="relative py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+                {/* LEFT */}
+                <div className="md:col-span-7 max-w-2xl">
+                  <div className="flex items-center gap-4 mb-6 flex-wrap">
+                    <div className="text-sm uppercase tracking-wide text-[color:var(--muted)]">
+                      QRL 2.0 • Zond Execution Layer
+                    </div>
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[color:var(--badgeBg)] border border-[color:var(--badgeBorder)] text-[color:var(--badgeText)]">
+                      Devnet Active
+                    </span>
                   </div>
+
                   <h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6">
-                    Post‑Quantum Smart Contracts
+                    Post-Quantum Smart Contracts
                   </h1>
-                  <p className="text-xl text-[color:var(--muted)] leading-relaxed max-w-2xl">
-                    An EVM‑compatible execution layer secured by hash‑based signatures at protocol level. No retrofit. No emergency migration. Built quantum‑resistant from genesis logic.
+
+                  <p className="text-xl text-[color:var(--muted)] leading-relaxed">
+                    QRL 2.0 (Zond) introduces an EVM-compatible execution layer secured by hash-based cryptography at the protocol level — designed for long-term quantum resilience.
                   </p>
-                  <div className="mt-10 flex flex-wrap gap-4">
-                    <a
-                      href="https://qrlhub.com/en/zond"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-2xl px-6 py-3 bg-[color:var(--heroBtn)] hover:bg-[color:var(--heroBtnHover)] text-white shadow-lg shadow-[color:var(--heroBtnShadow)] transition flex items-center gap-2"
-                    >
-                      Official Zond Page <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </div>
                 </div>
+
+                {/* RIGHT FEATURE CARD */}
                 <div className="md:col-span-5">
-                  <div className="rounded-3xl p-8 bg-[color:var(--surface)] border border-[color:var(--border)]">
-                    <h3 className="text-lg font-semibold text-[color:var(--fg)] mb-4">
-                      Core Properties
+                  <div className="rounded-3xl p-8 bg-[color:var(--surface)] border border-[color:var(--border)] shadow-xl shadow-[color:var(--primaryShadow)]/20">
+                    <h3 className="text-lg font-semibold mb-6 text-[color:var(--fg)]">
+                      Core Features
                     </h3>
-                    <ul className="space-y-3 text-sm text-[color:var(--muted)]">
-                      <li>• Hash‑based post‑quantum signatures</li>
-                      <li>• EVM compatibility</li>
-                      <li>• No cryptographic retrofit required</li>
-                      <li>• Migration‑friendly for Ethereum developers</li>
+
+                    <ul className="space-y-4 text-sm">
+                      {[
+                        "Ethereum Virtual Machine (EVM) compatible",
+                        "Proof-of-Stake consensus",
+                        "Smart contracts via Hyperion",
+                        "NIST-approved cryptography",
+                        "Familiar Web3 tooling",
+                      ].map((feature) => (
+                        <li key={feature} className="flex items-start gap-3 text-[color:var(--muted)]">
+                          <span className="mt-1 w-2 h-2 rounded-full bg-[color:var(--primary)]" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -728,35 +737,35 @@ export default function QRLHubHomepage() {
             </Container>
           </section>
 
-          {/* ================= WHY IT EXISTS ================= */}
-          <section className="py-20 border-b border-[color:var(--border)]">
+          <Qrl2ScrollSpy />
+
+          {/* ================= WHY ================= */}
+          <section id="why" className="py-24 border-b border-[color:var(--border)]">
             <Container>
-              <div className="max-w-4xl">
-                <h2 className="text-3xl font-semibold mb-8">Why QRL 2.0 Exists</h2>
-                <div className="space-y-6 text-[color:var(--muted)] leading-relaxed">
-                  <p>
-                    Most smart contract platforms rely on elliptic curve cryptography. Quantum computing threatens that foundation.
-                  </p>
-                  <p>
-                    Upgrading a live chain’s cryptography is politically and technically complex. QRL 2.0 avoids that structural risk by integrating post‑quantum security directly into the protocol.
-                  </p>
-                </div>
+              <div className="max-w-4xl space-y-8">
+                <h2 className="text-3xl font-semibold">Why QRL 2.0 Exists</h2>
+                <p className="text-[color:var(--muted)] leading-relaxed">
+                  Most smart contract platforms rely on elliptic curve cryptography. While secure today, this model is vulnerable to large-scale quantum computers.
+                </p>
+                <p className="text-[color:var(--muted)] leading-relaxed">
+                  QRL 1.x launched in 2018 using XMSS hash-based signatures. QRL 2.0 extends that philosophy into smart contract execution — integrating post-quantum security directly into the protocol foundation.
+                </p>
               </div>
             </Container>
           </section>
 
           {/* ================= ARCHITECTURE ================= */}
-          <section className="py-20 border-b border-[color:var(--border)]">
+          <section id="architecture" className="py-24 border-b border-[color:var(--border)]">
             <Container>
-              <h2 className="text-3xl font-semibold mb-12">Architecture</h2>
+              <h2 className="text-3xl font-semibold mb-12">Architectural Model</h2>
               <div className="grid md:grid-cols-3 gap-8">
                 {[
-                  { title: "Signature Layer", desc: "XMSS‑style hash‑based signatures integrated at transaction level." },
-                  { title: "Execution Layer", desc: "EVM‑compatible environment supporting Solidity smart contracts." },
-                  { title: "Security Model", desc: "Quantum resistance designed structurally, not patched later." },
+                  { title: "Post-Quantum Signature Layer", desc: "Hash-based cryptographic security integrated at protocol level." },
+                  { title: "EVM Execution Layer", desc: "Solidity compatibility enabling smart contracts and tooling reuse." },
+                  { title: "Consensus & Network Layer", desc: "Distributed validation aligned with QRL security model." },
                 ].map((item) => (
                   <div key={item.title} className="rounded-3xl p-8 bg-[color:var(--surface)] border border-[color:var(--border)]">
-                    <h3 className="text-lg font-semibold text-[color:var(--fg)] mb-3">{item.title}</h3>
+                    <h3 className="font-semibold mb-3">{item.title}</h3>
                     <p className="text-sm text-[color:var(--muted)]">{item.desc}</p>
                   </div>
                 ))}
@@ -764,39 +773,38 @@ export default function QRLHubHomepage() {
             </Container>
           </section>
 
-          {/* ================= DEVELOPER FLOW ================= */}
-          <section className="py-20 border-b border-[color:var(--border)]">
+          {/* ================= DIAGRAM ================= */}
+          <section id="diagram" className="py-24 border-b border-[color:var(--border)]">
             <Container>
-              <h2 className="text-3xl font-semibold mb-12">Developer Experience</h2>
-              <div className="grid md:grid-cols-2 gap-10 max-w-5xl">
-                {[
-                  { title: "Solidity Compatible", desc: "Reuse contracts and tooling with minimal modifications." },
-                  { title: "Familiar RPC Patterns", desc: "Ethereum‑style interaction model." },
-                  { title: "Future‑Proof Signing", desc: "Transactions use post‑quantum cryptography by default." },
-                  { title: "Long‑Term Stability", desc: "No emergency cryptographic migrations required." },
-                ].map((item) => (
-                  <div key={item.title}>
-                    <h3 className="text-lg font-semibold mb-3 text-[color:var(--fg)]">{item.title}</h3>
-                    <p className="text-[color:var(--muted)]">{item.desc}</p>
-                  </div>
-                ))}
+              <h2 className="text-3xl font-semibold mb-12">System Interaction Flow</h2>
+              <div className="relative rounded-3xl p-12 bg-[color:var(--surface)] border border-[color:var(--border)]">
+                <div className="grid md:grid-cols-3 gap-8 text-center relative z-10">
+                  <div className="p-6 rounded-2xl bg-[color:var(--surfaceHover)] border border-[color:var(--border)]">Wallet / User</div>
+                  <div className="p-6 rounded-2xl bg-[color:var(--surfaceHover)] border border-[color:var(--border)]">QRL 2.0 Core</div>
+                  <div className="p-6 rounded-2xl bg-[color:var(--surfaceHover)] border border-[color:var(--border)]">Smart Contracts</div>
+                </div>
               </div>
             </Container>
           </section>
 
-          {/* ================= VISION ================= */}
-          <section className="py-20">
+          {/* ================= ROADMAP ================= */}
+          <section id="roadmap" className="py-24">
             <Container>
-              <div className="max-w-4xl">
-                <h2 className="text-3xl font-semibold mb-8">Long‑Term Vision</h2>
-                <div className="space-y-6 text-[color:var(--muted)] leading-relaxed">
-                  <p>
-                    QRL 2.0 aims to provide a secure programmable base layer for decentralized finance, identity, and infrastructure in a post‑quantum world.
-                  </p>
-                  <p>
-                    Instead of reacting to quantum breakthroughs, QRL builds cryptographic resilience directly into the foundation.
-                  </p>
-                </div>
+              <h2 className="text-3xl font-semibold mb-12">Roadmap & Network Status</h2>
+              <div className="relative max-w-3xl">
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[color:var(--border)]" />
+                {[
+                  { phase: "Research Phase", desc: "Protocol design and post-quantum validation research." },
+                  { phase: "Devnet", desc: "Active developer experimentation and testing." },
+                  { phase: "Testnet", desc: "Expanded ecosystem participation and stress testing." },
+                  { phase: "Mainnet Launch", desc: "Full production deployment of QRL 2.0." },
+                ].map((item, i) => (
+                  <div key={i} className="relative pl-12 pb-12">
+                    <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-[color:var(--primary)]" />
+                    <h3 className="font-semibold">{item.phase}</h3>
+                    <p className="text-sm text-[color:var(--muted)]">{item.desc}</p>
+                  </div>
+                ))}
               </div>
             </Container>
           </section>
@@ -975,4 +983,45 @@ function TelegramIcon({ className }: { className?: string }) {
   );
 }
 
+// ================= QRL2 SCROLL SPY COMPONENT =================
+function Qrl2ScrollSpy() {
+  const sections = ["why", "architecture", "diagram", "roadmap"];
+  const [active, setActive] = React.useState("why");
 
+  React.useEffect(() => {
+    const handler = () => {
+      const scrollY = window.scrollY + 140;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) {
+          setActive(id);
+        }
+      }
+    };
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  return (
+    <section className="sticky top-16 md:top-[72px] z-40 bg-[color:var(--bg)]/95 backdrop-blur border-b border-[color:var(--border)]">
+      <Container>
+        <div className="flex gap-6 overflow-x-auto py-4 text-sm">
+          {sections.map((id) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={cx(
+                "transition whitespace-nowrap",
+                active === id
+                  ? "text-[color:var(--primary)] font-semibold"
+                  : "text-[color:var(--muted)] hover:text-[color:var(--fg)]"
+              )}
+            >
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </a>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
