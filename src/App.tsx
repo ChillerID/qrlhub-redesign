@@ -54,7 +54,7 @@ const NAV_ITEMS: { label: string; page?: Page; hash?: string }[] = [
   { label: "FAQ", hash: "#network" },
   { label: "News", hash: "#developers" },
   { label: "Qubit Tracker", hash: "#ecosystem" },
-    { label: "QRL 2.0", hash: "#community" },
+  { label: "Community Projects", hash: "#community" },
 ];
 const THEMES: { code: Theme; label: string }[] = [
 //  { code: "dark", label: "DarkOld" },
