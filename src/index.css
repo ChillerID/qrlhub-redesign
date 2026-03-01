@@ -2,172 +2,204 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================================
-   DARK (Original)
-   ========================================================= */
+/* =====================================================
+   GLOBAL GOLD BADGE (ALL THEMES)
+===================================================== */
+
+:root {
+  --badgeBg: rgba(255, 184, 28, 0.12);
+  --badgeBorder: rgba(255, 184, 28, 0.4);
+  --badgeText: #ffb81c;
+  --badgeDot: #ffb81c;
+}
+
+/* =====================================================
+   DARK (UNCHANGED)
+===================================================== */
+
 [data-theme="dark"] {
-  --bg: #0b1120;
-  --bgHeader: rgba(11, 17, 32, 0.8);
-
-  --surface: #111827;
-  --surfaceSolid: #111827;
-  --surfaceHover: #1f2937;
-
+  --bg: #0b0f14;
+  --bgHeader: rgba(11, 15, 20, 0.85);
+  --surface: #11161d;
+  --surfaceSolid: #11161d;
+  --surfaceHover: #1a212b;
   --border: #1f2937;
+  --fg: #f1f5f9;
+  --muted: #94a3b8;
 
-  --fg: #f9fafb;
+  --primary: #3b82f6;
+  --primaryHover: #2563eb;
+  --primaryShadow: rgba(59, 130, 246, 0.45);
+  --primaryGlow: rgba(59, 130, 246, 0.25);
+
+  --accent: #ffb81c;
+  --accentHover: #e6a800;
+  --accentText: #0b0f14;
+  --accentShadow: rgba(255, 184, 28, 0.5);
+
+  /* Hero buttons use theme primary in Dark */
+  --heroBtn: var(--primary);
+  --heroBtnHover: var(--primaryHover);
+  --heroBtnShadow: var(--primaryShadow);
+}
+
+/* =====================================================
+   DARK NEW (REFERENCE STYLE)
+===================================================== */
+
+[data-theme="darkNew"] {
+  --bg: #05070a;
+  --bgHeader: rgba(5, 7, 10, 0.85);
+  --surface: #0d1117;
+  --surfaceSolid: #0d1117;
+  --surfaceHover: #161b22;
+  --border: #1f2937;
+  --fg: #f8fafc;
   --muted: #9ca3af;
 
   --primary: #2563eb;
   --primaryHover: #1d4ed8;
+  --primaryShadow: rgba(37, 99, 235, 0.5);
+  --primaryGlow: rgba(37, 99, 235, 0.3);
 
-  --primaryShadow: rgba(37, 99, 235, 0.45);
-  --primaryGlow: rgba(37, 99, 235, 0.6);
+  --accent: #ffb81c;
+  --accentHover: #e6a800;
+  --accentText: #05070a;
+  --accentShadow: rgba(255, 184, 28, 0.5);
 
-  /* Badge */
-  --badgeBg: var(--surface);
-  --badgeBorder: var(--border);
-  --badgeText: var(--fg);
-  --badgeDot: var(--primary);
+  /* Hero buttons reference */
+  --heroBtn: #2563eb;
+  --heroBtnHover: #1d4ed8;
+  --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
 
-/* =========================================================
-   LIGHT (Original + Soft Red Badge)
-   ========================================================= */
+/* =====================================================
+   LIGHT (MATCH DARKNEW HERO BUTTONS)
+===================================================== */
+
 [data-theme="light"] {
   --bg: #f8fafc;
-  --bgHeader: rgba(255, 255, 255, 0.8);
-
+  --bgHeader: rgba(255, 255, 255, 0.85);
   --surface: #ffffff;
   --surfaceSolid: #ffffff;
   --surfaceHover: #f1f5f9;
-
   --border: #e5e7eb;
-
   --fg: #0f172a;
   --muted: #64748b;
 
   --primary: #3b82f6;
   --primaryHover: #2563eb;
-
   --primaryShadow: rgba(59, 130, 246, 0.35);
-  --primaryGlow: rgba(59, 130, 246, 0.55);
+  --primaryGlow: rgba(59, 130, 246, 0.2);
 
-  /* Badge (matches screenshot) */
-  --badgeBg: #fde8e8;
-  --badgeBorder: #f5c2c2;
-  --badgeText: #b91c1c;
-  --badgeDot: #ef4444;
+  --badgeBg: rgba(255, 184, 28, 0.18);
+  --badgeBorder: rgba(255, 184, 28, 0.6);
+  --badgeText: #c27a00;      /* darker gold for contrast */
+  --badgeDot: #ffb81c;
+
+  --accent: #ffb81c;
+  --accentHover: #e6a800;
+  --accentText: #0f172a;
+  --accentShadow: rgba(255, 184, 28, 0.4);
+
+  /* Force hero to DarkNew blue */
+  --heroBtn: #2563eb;
+  --heroBtnHover: #1d4ed8;
+  --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
 
-/* =========================================================
-   GREEN (Arabic)
-   ========================================================= */
-[data-theme="green"] {
-  --bg: #0f1f17;
-  --bgHeader: rgba(15, 31, 23, 0.85);
+/* =====================================================
+   LIGHT NEW (MATCH DARKNEW HERO BUTTONS)
+===================================================== */
 
-  --surface: #12281f;
-  --surfaceSolid: #12281f;
-  --surfaceHover: #1f3a2f;
-
-  --border: #1f3a2f;
-
-  --fg: #ecfdf5;
-  --muted: #86efac;
-
-  --primary: #10b981;
-  --primaryHover: #059669;
-
-  --primaryShadow: rgba(16, 185, 129, 0.45);
-  --primaryGlow: rgba(16, 185, 129, 0.7);
-
-  --badgeBg: var(--surface);
-  --badgeBorder: var(--border);
-  --badgeText: var(--fg);
-  --badgeDot: var(--primary);
-}
-
-/* =========================================================
-   DARK NEW (Premium Institutional)
-   ========================================================= */
-[data-theme="darkNew"] {
-  --bg: #0a0f1c;
-  --bgHeader: rgba(10, 15, 28, 0.85);
-
-  --surface: #121a2b;
-  --surfaceSolid: #121a2b;
-  --surfaceHover: #1a2438;
-
-  --border: #1c2740;
-
-  --fg: #e6edf7;
-  --muted: #8b9bb5;
-
-  --primary: #4f8cff;
-  --primaryHover: #6aa2ff;
-
-  --primaryShadow: rgba(79, 140, 255, 0.35);
-  --primaryGlow: rgba(79, 140, 255, 0.75);
-
-  --badgeBg: var(--surface);
-  --badgeBorder: var(--border);
-  --badgeText: var(--fg);
-  --badgeDot: var(--primary);
-}
-
-/* =========================================================
-   LIGHT NEW (Institutional Clean)
-   ========================================================= */
 [data-theme="lightNew"] {
   --bg: #ffffff;
-  --bgHeader: rgba(255, 255, 255, 0.85);
-
-  --surface: #f4f7fb;
+  --bgHeader: rgba(255, 255, 255, 0.9);
+  --surface: #ffffff;
   --surfaceSolid: #ffffff;
-  --surfaceHover: #e9eef5;
-
-  --border: #d8e0ea;
-
+  --surfaceHover: #f3f4f6;
+  --border: #e5e7eb;
   --fg: #111827;
   --muted: #6b7280;
 
-  --primary: #0047ab;
-  --primaryHover: #003d8f;
+  --primary: #2563eb;
+  --primaryHover: #1d4ed8;
+  --primaryShadow: rgba(37, 99, 235, 0.3);
+  --primaryGlow: rgba(37, 99, 235, 0.2);
 
-  --primaryShadow: rgba(0, 71, 171, 0.3);
-  --primaryGlow: rgba(0, 71, 171, 0.55);
+  --badgeBg: rgba(255, 184, 28, 0.18);
+  --badgeBorder: rgba(255, 184, 28, 0.6);
+  --badgeText: #c27a00;      /* darker gold for contrast */
+  --badgeDot: #ffb81c;
 
-  --badgeBg: #fff4f4;
-  --badgeBorder: #f8d0d0;
-  --badgeText: #9f1239;
-  --badgeDot: #e11d48;
+
+  --accent: #ffb81c;
+  --accentHover: #e6a800;
+  --accentText: #111827;
+  --accentShadow: rgba(255, 184, 28, 0.4);
+
+  /* Force hero to DarkNew blue */
+  --heroBtn: #2563eb;
+  --heroBtnHover: #1d4ed8;
+  --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }
 
-/* =========================================================
-   GREEN NEW (Deep Crypto Premium)
-   ========================================================= */
+/* =====================================================
+   GREEN (MATCH DARKNEW HERO BUTTONS ONLY)
+===================================================== */
+
+[data-theme="green"] {
+  --bg: #0f1f17;
+  --bgHeader: rgba(15, 31, 23, 0.85);
+  --surface: #12281f;
+  --surfaceSolid: #12281f;
+  --surfaceHover: #1f3a2f;
+  --border: #1f3a2f;
+  --fg: #ecfdf5;
+  --muted: #cbd5e1; /* neutral gray-blue */
+
+  --primary: #10b981;
+  --primaryHover: #059669;
+  --primaryShadow: rgba(16, 185, 129, 0.45);
+  --primaryGlow: rgba(16, 185, 129, 0.25);
+
+  --accent: #ffb81c;
+  --accentHover: #e6a800;
+  --accentText: #0f1f17;
+  --accentShadow: rgba(255, 184, 28, 0.5);
+
+  /* Hero matches DarkNew blue */
+  --heroBtn: #2563eb;
+  --heroBtnHover: #1d4ed8;
+  --heroBtnShadow: rgba(37, 99, 235, 0.5);
+}
+
+/* =====================================================
+   GREEN NEW (MATCH DARKNEW HERO BUTTONS ONLY)
+===================================================== */
+
 [data-theme="greenNew"] {
-  --bg: #0c1a14;
-  --bgHeader: rgba(12, 26, 20, 0.9);
+  --bg: #081c15;
+  --bgHeader: rgba(8, 28, 21, 0.85);
+  --surface: #0f2a21;
+  --surfaceSolid: #0f2a21;
+  --surfaceHover: #184d3b;
+  --border: #184d3b;
+  --fg: #e6fffa;
+  --muted: #cbd5e1; /* neutral gray-blue */
 
-  --surface: #13261f;
-  --surfaceSolid: #13261f;
-  --surfaceHover: #1a3329;
+  --primary: #10b981;
+  --primaryHover: #059669;
+  --primaryShadow: rgba(16, 185, 129, 0.45);
+  --primaryGlow: rgba(16, 185, 129, 0.3);
 
-  --border: #1e3a30;
+  --accent: #ffb81c;
+  --accentHover: #e6a800;
+  --accentText: #081c15;
+  --accentShadow: rgba(255, 184, 28, 0.5);
 
-  --fg: #eafff6;
-  --muted: #8de3c0;
-
-  --primary: #14b884;
-  --primaryHover: #0ea472;
-
-  --primaryShadow: rgba(20, 184, 132, 0.4);
-  --primaryGlow: rgba(20, 184, 132, 0.75);
-
-  --badgeBg: var(--surface);
-  --badgeBorder: var(--border);
-  --badgeText: var(--fg);
-  --badgeDot: var(--primary);
+  /* Hero matches DarkNew blue */
+  --heroBtn: #2563eb;
+  --heroBtnHover: #1d4ed8;
+  --heroBtnShadow: rgba(37, 99, 235, 0.5);
 }

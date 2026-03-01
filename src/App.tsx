@@ -198,7 +198,7 @@ function MobileMenu({
               href="https://theqrl.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition text-center"
+              className="block w-full px-4 py-2 rounded-xl bg-[color:var(--accent)] hover:bg-[color:var(--accentHover)] text-[color:var(--accentText)] text-sm font-medium shadow-lg shadow-[color:var(--accentShadow)] transition text-center"
             >
               Official Site → theqrl.org
             </a>
@@ -415,7 +415,7 @@ export default function QRLHubHomepage() {
                 href="https://theqrl.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-2 px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition"
+                className="ml-2 px-4 py-2 rounded-xl bg-[color:var(--accent)] hover:bg-[color:var(--accentHover)] text-[color:var(--accentText)] text-sm font-medium shadow-lg shadow-[color:var(--accentShadow)] transition"
               >
                 Official Site → theqrl.org
               </a>
@@ -459,13 +459,13 @@ export default function QRLHubHomepage() {
                   {/* Hero Buttons */}
                   <div className="mt-10 flex flex-wrap gap-4">
                     <button
-                      className="rounded-2xl px-6 py-3 shadow-md transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white shadow-lg shadow-[color:var(--primaryShadow)]"
+                      className="rounded-2xl px-6 py-3 shadow-md transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-[color:var(--heroBtn)] hover:bg-[color:var(--heroBtnHover)] text-white shadow-lg shadow-[color:var(--heroBtnShadow)]"
                     >
                       {t("exploreNews")} <ArrowRight className="w-4 h-4" />
                     </button>
 
                     <button
-                      className="rounded-2xl px-6 py-3 font-semibold transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-[color:var(--surfaceHover)] hover:bg-[color:var(--surface)] text-[color:var(--fg)] border border-[color:var(--border)]"
+                      className="rounded-2xl px-6 py-3 font-semibold transition transform duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 bg-[color:var(--heroBtn)] hover:bg-[color:var(--heroBtnHover)] text-white shadow-lg shadow-[color:var(--heroBtnShadow)]"
                     >
                       {t("exploreQrl")} <ArrowRight className="w-4 h-4" />
                     </button>
@@ -495,7 +495,7 @@ export default function QRLHubHomepage() {
                   )}
                   >
                     <div className="p-6">
-                      <div className="flex items-center gap-2 text-sm text-[color:var(--primary)]">
+                      <div className="flex items-center gap-2 text-sm text-[color:var(--securityAccent)]">
                         <Sparkles className="w-4 h-4" />
                         Post‑Quantum Security
                       </div>
@@ -545,9 +545,9 @@ export default function QRLHubHomepage() {
                           href="https://theqrl.org"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2 rounded-xl bg-[color:var(--primary)] hover:bg-[color:var(--primaryHover)] text-white text-sm shadow-lg shadow-[color:var(--primaryShadow)] transition whitespace-nowrap inline-flex items-center w-full md:w-auto"
+                          className="px-4 py-2 rounded-xl bg-[color:var(--accent)] hover:bg-[color:var(--accentHover)] text-[color:var(--accentText)] text-sm font-medium shadow-lg shadow-[color:var(--accentShadow)] transition whitespace-nowrap inline-flex items-center w-full md:w-auto"
                         >
-                          Visit Official Site
+                          Official Site → theqrl.org
                         </a>
                       </div>
                     </div>
